@@ -31,7 +31,7 @@
             font-size: 0.9rem;
         }
 
-        .tsk-icon__btn {
+        .mom-icon__btn {
             opacity: 0; // s
             transition: opacity 0.3s ease; // sm
         }
@@ -42,7 +42,7 @@
         box-shadow: $box-shadow-hover;
 
         .project__header {
-            .tsk-icon__btn {
+            .mom-icon__btn {
                 opacity: 1;
             }
         }

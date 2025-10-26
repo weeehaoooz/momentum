@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'tsk-project-card',
+  selector: 'mom-project-card',
   imports: [
     MatButtonModule,
     MatIconModule

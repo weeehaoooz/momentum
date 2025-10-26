@@ -3,7 +3,7 @@ import { ProjectViewNavComponent } from "../components/project-view-nav/project-
 import { ProjectsService } from '../../services/projects.service';
 
 @Component({
-  selector: 'tsk-overview',
+  selector: 'mom-overview',
   imports: [
     ProjectViewNavComponent
   ],

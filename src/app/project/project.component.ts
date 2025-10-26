@@ -1,16 +1,16 @@
-import { TitleCasePipe } from '@angular/common';
 import { Component, computed, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { ProjectsService } from '../services/projects.service';
 import { ITaskStatusEnum } from '../components/task-card/task.interface';
+import { ProjectNameEditorComponent } from "./components/project-name-editor/project-name-editor.component";
 
 @Component({
-  selector: 'tsk-project',
+  selector: 'mom-project',
   imports: [
     MatIconModule,
     RouterOutlet,
-    TitleCasePipe
+    ProjectNameEditorComponent
 ],
   templateUrl: './project.component.html',
   styleUrl: './project.component.scss'
@@ -39,5 +39,10 @@ export class ProjectComponent {
     }
   }
   
-  
+  nameChange(name: string) {
+    const currentProject = this.project();
+    if (currentProject) {
+      this.projectService.updateProject(this.projectId ?? '', { ...currentProject, name });
+    }
+  }
 }

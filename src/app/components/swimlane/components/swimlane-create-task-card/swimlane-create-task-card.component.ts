@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 
 @Component({
-  selector: 'tsk-swimlane-create-task-card',
+  selector: 'mom-swimlane-create-task-card',
   imports: [
     MatIconModule,
     MatButtonModule,

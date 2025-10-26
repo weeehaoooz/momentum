@@ -7,7 +7,7 @@
     </div>
     <div class="projects__grid" cdkDropList cdkDropListOrientation="mixed" (cdkDropListDropped)="drop($event)">
         @for (project of projects(); track project) {
-            <tsk-project-card [project]="project" cdkDrag></tsk-project-card>
+            <mom-project-card [project]="project" cdkDrag></mom-project-card>
         }
     </div>
 </div>

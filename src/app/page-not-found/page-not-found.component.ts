@@ -3,7 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'tsk-page-not-found',
+  selector: 'mom-page-not-found',
   imports: [
     RouterLink,
     MatButtonModule

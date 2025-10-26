@@ -40,11 +40,11 @@
         flex: 1;
         gap: 0;
 
-        tsk-task-card.cdk-drag {
+        mom-task-card.cdk-drag {
             transition: transform 0.2s ease;
         }
 
-        tsk-task-card.cdk-drag-dragging {
+        mom-task-card.cdk-drag-dragging {
             opacity: 0.7;
             cursor: grabbing;
             transform: rotate(2deg); // nice little effect

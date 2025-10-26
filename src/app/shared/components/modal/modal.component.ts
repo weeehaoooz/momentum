@@ -4,7 +4,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-  selector: 'tsk-modal',
+  selector: 'mom-modal',
   imports: [
     CommonModule,
     MatButtonModule,

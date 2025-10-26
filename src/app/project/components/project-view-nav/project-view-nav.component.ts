@@ -3,7 +3,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
-  selector: 'tsk-project-view-nav',
+  selector: 'mom-project-view-nav',
   imports: [
     RouterLink,
     RouterLinkActive,

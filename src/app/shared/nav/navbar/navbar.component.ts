@@ -4,7 +4,7 @@ import { SearchBarComponent } from "../../components/search-bar/search-bar.compo
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'tsk-navbar',
+  selector: 'mom-navbar',
   imports: [
     LogoComponent,
     SearchBarComponent,

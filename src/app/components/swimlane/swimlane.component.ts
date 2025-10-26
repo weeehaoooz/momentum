@@ -12,7 +12,7 @@ import { SwimlaneCreateTaskCardComponent } from "./components/swimlane-create-ta
 import { ISwimlane } from './swimlane.interface';
 
 @Component({
-  selector: 'tsk-swimlane',
+  selector: 'mom-swimlane',
   imports: [
     TaskCardComponent,
     TitleCasePipe,

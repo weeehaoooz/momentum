@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-  selector: 'tsk-search-bar',
+  selector: 'mom-search-bar',
   imports: [
     MatIconModule
   ],

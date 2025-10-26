@@ -1,0 +1,70 @@
+@use "colors" as *;
+@use "defaults" as *;
+
+$editor-height: 36px;
+
+.project-name-editor {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  .view-mode {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: $editor-height;
+
+    .project-title {
+      font-size: 1.8em;
+      font-weight: 600;
+      color: $black-color;
+      line-height: 1.2;
+      border: 1px solid transparent;
+      margin: 0;
+    }
+  }
+
+  .edit-mode {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    .name-input {
+      font-size: 1.8em;
+      font-weight: 600;
+      color: $black-color;
+      line-height: 1.2;
+
+      /* make it look like plain text */
+      background: transparent;
+      border: none;
+      padding: 0;
+      margin: 0;
+      outline: none;
+
+      /* sizing */
+      min-width: 220px;
+      width: auto;
+      max-width: 60vw;
+
+      /* keep caret visible */
+      caret-color: $primary-color;
+    }
+
+    /* subtle focus ring to indicate editability */
+    .name-input:focus {
+      border-bottom: $border-color 1px solid;
+    }
+
+    /* make buttons sit nicely next to the "text-like" input */
+    button[mat-flat-button],
+    button[mat-stroked-button] {
+      height: $editor-height;
+      line-height: $editor-height;
+    }
+  }
+}

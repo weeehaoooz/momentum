@@ -2,11 +2,11 @@
     <div class="swimlane__header">
         <h3>{{swimlane()?.title | titlecase}}</h3>
         <div class="button__container">
-            <button class=tsk-icon__btn>
+            <button class=mom-icon__btn>
                 <mat-icon>sort</mat-icon>
             </button>
             @if (!showNewTaskCard()) {
-                <button class=tsk-icon__btn (click)="toggleNewTaskCard()">
+                <button class=mom-icon__btn (click)="toggleNewTaskCard()">
                     <mat-icon>add</mat-icon>
                 </button>
             }
@@ -20,15 +20,15 @@
         (cdkDropListDropped)="drop($event)"
         >
         @if (showNewTaskCard()) {
-            <tsk-swimlane-create-task-card (close)="toggleNewTaskCard()"></tsk-swimlane-create-task-card>
+            <mom-swimlane-create-task-card (close)="toggleNewTaskCard()"></mom-swimlane-create-task-card>
         }
         
         @for (task of tasks(); track $index ) {
-            <tsk-task-card 
+            <mom-task-card 
                 [task]="task" 
                 [class.last]="$index == $count - 1"
                 cdkDrag>
-            </tsk-task-card>
+            </mom-task-card>
         }
     </div>
 </div>

@@ -8,7 +8,7 @@ import { CreateProjectModalComponent } from './components/create-project-modal/c
 import { CdkDropList, CdkDrag, CdkDragDrop, moveItemInArray, transferArrayItem } from "@angular/cdk/drag-drop";
 
 @Component({
-  selector: 'tsk-projects',
+  selector: 'mom-projects',
   imports: [
     ProjectCardComponent,
     MatButtonModule,

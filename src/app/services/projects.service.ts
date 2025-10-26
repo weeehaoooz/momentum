@@ -173,6 +173,16 @@ export class ProjectsService {
   createProject(project: IProject) {
     this.projects.set([...this.projects(), project]);
   }
+
+  updateProject(projectId: string, project: IProject) {
+    this.projects.set(this.projects().map(p => p.code === projectId ? project : p));
+
+    // If the current project is the one being updated, update the currentProject signal too
+    const cp = this.currentProject();
+    if (cp && cp.code === projectId) {
+      this.currentProject.set(project);
+    }
+  }
 }
 
 export interface IProject {

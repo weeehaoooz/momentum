@@ -4,7 +4,7 @@ import { CommonModule, TitleCasePipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-  selector: 'tsk-task-card',
+  selector: 'mom-task-card',
   imports: [
     CommonModule,
     TitleCasePipe,

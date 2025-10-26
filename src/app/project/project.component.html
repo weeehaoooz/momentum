@@ -1,7 +1,7 @@
 <div class="project__container">
     <div class="project__toolbar">
         <div class="title__container">
-            <h1>{{project()?.name | titlecase}}</h1>
+            <mom-project-name-editor [project]="project()" (nameChange)="nameChange($event)"></mom-project-name-editor>
             <div class="progress">
                 <div class="progress-bar" [style.width.%]="completionPercentage()"></div>
             </div>

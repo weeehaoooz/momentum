@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'tsk-list',
+  selector: 'mom-list',
   imports: [
     ProjectViewNavComponent,
     MatButtonModule,

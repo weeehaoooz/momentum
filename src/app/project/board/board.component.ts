@@ -8,7 +8,7 @@ import { ProjectViewNavComponent } from '../components/project-view-nav/project-
 import { IProjectTask, ITask, ITaskStatusEnum } from '../../components/task-card/task.interface';
 
 @Component({
-  selector: 'tsk-board',
+  selector: 'mom-board',
   imports: [
     MatIconModule,
     MatButtonModule,

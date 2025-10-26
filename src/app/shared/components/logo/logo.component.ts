@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-  selector: 'tsk-logo',
+  selector: 'mom-logo',
   imports: [
     MatIconModule
   ],

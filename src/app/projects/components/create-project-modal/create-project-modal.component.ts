@@ -10,7 +10,7 @@ import { IProject, ProjectsService } from '../../../services/projects.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'tsk-create-project-modal',
+  selector: 'mom-create-project-modal',
   imports: [
     CommonModule,
     ReactiveFormsModule,
