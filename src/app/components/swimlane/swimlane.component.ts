@@ -7,9 +7,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { TaskCardComponent } from '../task-card/task-card.component';
-import { IProjectTask, ITask } from '../task-card/task.interface';
+import { ITask } from '../task-card/task.interface';
 import { SwimlaneCreateTaskCardComponent } from "./components/swimlane-create-task-card/swimlane-create-task-card.component";
 import { ISwimlane } from './swimlane.interface';
+import { IProject } from '../../services/projects.service';
 
 @Component({
   selector: 'mom-swimlane',
@@ -28,6 +29,7 @@ import { ISwimlane } from './swimlane.interface';
   styleUrl: './swimlane.component.scss'
 })
 export class SwimlaneComponent {
+  project = input<IProject | undefined>();
   swimlane = input<ISwimlane>();
   connectedTo = input<string[]>([]);
   taskMoved = output<ITask>();

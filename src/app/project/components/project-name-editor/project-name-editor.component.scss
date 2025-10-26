@@ -53,11 +53,12 @@ $editor-height: 36px;
 
       /* keep caret visible */
       caret-color: $primary-color;
+      border-bottom: $border-color 1px solid;
     }
 
     /* subtle focus ring to indicate editability */
     .name-input:focus {
-      border-bottom: $border-color 1px solid;
+      border-bottom: $primary-color 1px solid;      
     }
 
     /* make buttons sit nicely next to the "text-like" input */

@@ -20,9 +20,8 @@
         (cdkDropListDropped)="drop($event)"
         >
         @if (showNewTaskCard()) {
-            <mom-swimlane-create-task-card (close)="toggleNewTaskCard()"></mom-swimlane-create-task-card>
+            <mom-swimlane-create-task-card [project]="project()" [swimlane]="swimlane()" (close)="toggleNewTaskCard()"></mom-swimlane-create-task-card>
         }
-        
         @for (task of tasks(); track $index ) {
             <mom-task-card 
                 [task]="task" 

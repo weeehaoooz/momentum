@@ -160,6 +160,10 @@ export class ProjectsService {
     ])
   }
 
+  getProject(projectId: string) {
+    return this.projects().find(p => p.code === projectId);
+  }
+
   hasProject(projectId: string) {
     return this.projects().some(p => p.code === projectId);
   }
