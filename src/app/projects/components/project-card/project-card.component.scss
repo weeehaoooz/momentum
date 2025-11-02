@@ -6,13 +6,22 @@
     border-radius: 12px;
     padding: 1rem;
     background: $white-color;
-    //   box-shadow:
     box-shadow: $box-shadow;
     display: flex;
     flex-direction: column;
     gap: 1rem;
     cursor: pointer;
-    transition: .2s ease-in-out;
+    transition: .25s ease-in-out;
+
+    &:hover {
+        box-shadow: $box-shadow-hover;
+
+        .project__header {
+            .mom-icon__btn {
+                opacity: 1;
+            }
+        }
+    }
 
     .project__header {
         display: flex;
@@ -34,17 +43,6 @@
         .mom-icon__btn {
             opacity: 0; // s
             transition: opacity 0.3s ease; // sm
-        }
-    }
-
-
-    &:hover {
-        box-shadow: $box-shadow-hover;
-
-        .project__header {
-            .mom-icon__btn {
-                opacity: 1;
-            }
         }
     }
 

@@ -47,6 +47,10 @@
             &.low {
                 background-color: $priority-low;
             }
+
+            &.minimal {
+                background-color: $priority-minimal;
+            }
         }
     }
 

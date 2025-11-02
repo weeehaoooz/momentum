@@ -7,7 +7,7 @@
     gap: .5em;
     padding: .8em .5em;
     border-radius: .2em;
-    border: $border;
+    border: 1px solid $border-color;
     background-color: $white-color;
 
     .create-task__header {
@@ -28,5 +28,37 @@
             border: $border;
             border-radius: .2em;
         }
+
+        .dropdown-icon {
+            font-size: 1.75em; // Adjust size as needed
+            font-weight: 400;
+            color: $primary-color; // Use your primary color or any color you prefer
+            position: absolute; // Position it correctly
+            right: 0px; // Adjust right position
+            top: 50%; // Center vertically
+            transform: translateY(-50%); // Adjust for perfect centering
+
+        }
     }
+}
+
+::ng-deep .mat-mdc-option {
+    .priority-option {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: .5em;
+
+        .priority-icon {
+            display: grid;
+            place-content: center;
+            font-weight: 700;
+        }
+    }
+}
+
+::ng-deep .mat-select-arrow,
+::ng-deep .mat-mdc-select-arrow {
+    /* For newer Angular Material versions */
+    opacity: 0;
 }

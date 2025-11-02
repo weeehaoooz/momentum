@@ -10,11 +10,14 @@
             </button>
         </div>
     </div>
+    @if (project()) {
     <div class="swimlanes__container">
         @for (swimlane of swimlanes(); track $index) {
-        <mom-swimlane
+        <mom-swimlane [project]="project()"
           [swimlane]="swimlane" [connectedTo]="connectedIds(swimlane.id)" (taskMoved)="onTaskMoved($event)">
         </mom-swimlane>
         }
     </div>
+    }
+
 </div>
