@@ -24,6 +24,7 @@
     "@angular/router": "^20.3.6",
     "@angular/service-worker": "^20.3.6",
     "@angular/ssr": "^20.3.6",
+    "@ngx-pwa/local-storage": "^20.0.1",
     "express": "^4.18.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

@@ -9,10 +9,10 @@ export class TasksService {
   private projectService = inject(ProjectsService);
   
   createTask(projectId: string, task: ITask) {
-    const project = this.projectService.getProject(projectId);
-    if (project) {
-      project.tasks.push(task);
-      this.projectService.updateProject(projectId, project);
-    }
+    // const project = this.projectService.getProject(projectId);
+    // if (project) {
+    //   project.tasks.push(task);
+    //   this.projectService.updateProject(projectId, project);
+    // }
   }
 }

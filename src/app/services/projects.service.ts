@@ -1,190 +1,92 @@
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { ISwimlane } from '../components/swimlane/swimlane.interface';
 import { ITask, ITaskPriorityEnum, ITaskStatusEnum } from '../components/task-card/task.interface';
+import { StorageMap } from '@ngx-pwa/local-storage';
+
+const PROJECTS_STORAGE_KEY = 'momentum:projects';
+const STORAGE_CURRENT_KEY = 'momentum:currentProjectCode';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProjectsService {  
-  projects = signal<IProject[]>([]);
+export class ProjectsService {
+  private storage = inject(StorageMap);
 
+  projects = signal<Map<string, IProjectData>>(new Map());
   currentProject = signal<IProject | undefined>(undefined);
 
   constructor() {
-    this.projects.set([
-      {
-        name: 'Project 1',
-        code: 'P1',
-        description: 'Project 1 description',
-        progress: 0,
-        swimlanes: [
-          {
-            id: '1',
-            title: 'To Do',
-            criteria: ITaskStatusEnum.TODO,
-          },
-          {
-            id: '2',
-            title: 'In Progress',
-            criteria: ITaskStatusEnum.IN_PROGRESS,
-          },
-          {
-            id: '3',
-            title: 'Done',
-            criteria: ITaskStatusEnum.DONE,
+    if (this.projects().size === 0) {
+      this.storage.get(PROJECTS_STORAGE_KEY).subscribe({
+        next: projects => {
+          if (projects) {
+            const projectMap = new Map<string, IProjectData>();
+            Object.entries(projects).forEach(([key, value]) => projectMap.set(key, value as IProjectData));
+            this.projects.set(projectMap);
           }
-        ],
-        tasks: [
-          {
-            id: '1',
-            title: 'Task 1',
-            description: 'Complete Development Task',
-            status: ITaskStatusEnum.TODO,
-            priority: ITaskPriorityEnum.LOW,
-            due_date: new Date(),
-            created_at: new Date(),
-            updated_at: null
-          },
-          {
-            id: '2',
-            title: 'Task 2',
-            description: 'Task 2 description',
-            status: ITaskStatusEnum.IN_PROGRESS,
-            priority: ITaskPriorityEnum.MEDIUM,
-            due_date: new Date(),
-            created_at: new Date(),
-            updated_at: null
-          },
-          {
-            id: '3',
-            title: 'Task 3',
-            description: 'Task 3 description',
-            status: ITaskStatusEnum.DONE,
-            priority: ITaskPriorityEnum.HIGH,
-            due_date: new Date(),
-            created_at: new Date(),
-            updated_at: null
-          },
-          {
-            id: '4',
-            title: 'Task 4',
-            description: 'Task 4 description',
-            status: ITaskStatusEnum.TODO,
-            priority: ITaskPriorityEnum.CRITICAL,
-            due_date: new Date(),
-            created_at: new Date(),
-            updated_at: null
-          },
-          {
-            id: '5',
-            title: 'Task 5',
-            description: 'Task 5 description',
-            status: ITaskStatusEnum.IN_PROGRESS,
-            priority: ITaskPriorityEnum.MINIMAL,
-            due_date: new Date(),
-            created_at: new Date(),
-            updated_at: null
-          },
-          {
-            id: '6',
-            title: 'Task 6',
-            description: 'Task 6 description',
-            status: ITaskStatusEnum.DONE,
-            priority: ITaskPriorityEnum.LOW,
-            due_date: new Date(),
-            created_at: new Date(),
-            updated_at: null
-          },
-          {
-            id: '7',
-            title: 'Task 7',
-            description: 'Task 7 description',
-            status: ITaskStatusEnum.TODO,
-            priority: ITaskPriorityEnum.MEDIUM,
-            due_date: new Date(),
-            created_at: new Date(),
-            updated_at: null
-          },
-          {
-            id: '8',
-            title: 'Task 8',
-            description: 'Task 8 description',
-            status: ITaskStatusEnum.IN_PROGRESS,
-            priority: ITaskPriorityEnum.HIGH,
-            due_date: new Date(),
-            created_at: new Date(),
-            updated_at: null
-          }
-        ]
-      },
-      {
-        name: 'Project 2',
-        code: 'P2',
-        description: 'Project 2 description',
-        progress: 0,
-        swimlanes: [
-           {
-            id: '1',
-            title: 'To Do',
-            criteria: ITaskStatusEnum.TODO,
-          },
-          {
-            id: '2',
-            title: 'In Progress',
-            criteria: ITaskStatusEnum.IN_PROGRESS,
-          },
-        ],
-        tasks: [
-          {
-            id: '1',
-            title: 'Task 1',
-            description: 'Complete Development Task',
-            status: ITaskStatusEnum.TODO,
-            priority: ITaskPriorityEnum.LOW,
-            due_date: new Date(),
-            created_at: new Date(),
-            updated_at: null
-          },
-          {
-            id: '2',
-            title: 'Task 2',
-            description: 'Task 2 description',
-            status: ITaskStatusEnum.IN_PROGRESS,
-            priority: ITaskPriorityEnum.MEDIUM,
-            due_date: new Date(),
-            created_at: new Date(),
-            updated_at: null
-          },
-        ]
-      }
-    ])
-  }
-
-  getProject(projectId: string) {
-    return this.projects().find(p => p.code === projectId);
+        },
+        error: error => {
+          console.error(error);
+        }
+      });
+    }
   }
 
   hasProject(projectId: string) {
-    return this.projects().some(p => p.code === projectId);
-  }
-
-  setCurrentProject(projectId: string) {
-    const project = this.projects().find(p => p.code === projectId);
-    this.currentProject.set(project);
-    return project !== undefined;
+    const projectStorageKey = 'STORAGE_' + projectId
+    this.storage.get(projectStorageKey).subscribe({
+      next: () => {
+        return true;
+      },
+      error: () => {
+        return false
+      }
+    })
   }
 
   createProject(project: IProject) {
-    this.projects.set([...this.projects(), project]);
+    // Creating Project in projects Map
+    const order = this.projects().size
+    const projectData: IProjectData = {
+      code: project.code,
+      name: project.name,
+      description: project.description,
+      order: order,
+      totalTasks: project.tasks.length,
+      remainingTasks: project.tasks.filter(task => task.status === ITaskStatusEnum.TODO || task.status === ITaskStatusEnum.IN_PROGRESS).length,
+      highPriorityTasks: project.tasks.filter(task => task.priority === ITaskPriorityEnum.HIGH).length
+    }
+    const projects = this.projects().set(project.code, projectData);
+    this.projects.set(new Map(projects));
+    this.persistProjects();
+
+    // Creating Project under it's own key
+    const projectStorageKey = 'STORAGE_' + project.code
+    this.storage.set(projectStorageKey, project).subscribe({
+      next: () => {
+        console.log("project created successfully");
+      }, error: error => {
+        console.error(error);
+      }
+    });
   }
 
-  updateProject(projectId: string, project: IProject) {
-    this.projects.set(this.projects().map(p => p.code === projectId ? project : p));
-
-    // If the current project is the one being updated, update the currentProject signal too
-    const cp = this.currentProject();
-    if (cp && cp.code === projectId) {
-      this.currentProject.set(project);
+  // Persist the projects Map into local storage
+  persistProjects(): void {
+    try {
+      const map = this.projects();
+      // convert Map -> plain object { code: IProjectData, ... }
+      const plain = Object.fromEntries(Array.from(map.entries()));
+      this.storage.set(PROJECTS_STORAGE_KEY, plain).subscribe({
+        next: () => {
+          console.log('Projects persisted to storage');
+        },
+        error: (err) => {
+          console.error('Failed to persist projects', err);
+        }
+      });
+    } catch (err) {
+      console.error('persistProjects error', err);
     }
   }
 }
@@ -196,4 +98,14 @@ export interface IProject {
   progress: number;
   swimlanes: ISwimlane[];
   tasks: ITask[];
+}
+
+export interface IProjectData {
+  code: string,
+  name: string,
+  description: string,
+  order: number,
+  totalTasks: number,
+  remainingTasks: number,
+  highPriorityTasks: number
 }

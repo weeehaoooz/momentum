@@ -4,6 +4,7 @@ import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { ProjectsService } from '../services/projects.service';
 import { ITaskStatusEnum } from '../components/task-card/task.interface';
 import { ProjectNameEditorComponent } from "./components/project-name-editor/project-name-editor.component";
+import { ProjectService } from './services/project.service';
 
 @Component({
   selector: 'mom-project',
@@ -16,15 +17,15 @@ import { ProjectNameEditorComponent } from "./components/project-name-editor/pro
   styleUrl: './project.component.scss'
 })
 export class ProjectComponent {
-
-  private readonly projectService = inject(ProjectsService);
+  private readonly projectService = inject(ProjectService);
   private readonly route = inject(ActivatedRoute); 
   private readonly router = inject(Router);
 
-  project = this.projectService.currentProject;
   projectId = this.route.snapshot.paramMap.get('id') ?? null;
+  project = this.projectService.project;
 
   completionPercentage = computed(() => {
+    if (!this.project()) return 0;
     const tasks = this.project()?.tasks ?? [];
     if (tasks.length === 0) return 0;
     const done = tasks.filter(t => t.status === ITaskStatusEnum.DONE).length;
@@ -32,17 +33,20 @@ export class ProjectComponent {
   });
 
   ngOnInit() {
-    if(this.projectService.hasProject(this.projectId ?? '')) {
-      this.projectService.setCurrentProject(this.projectId ?? '');
-    } else {
-      this.router.navigate(['/page-not-found']);
-    }
+    this.projectService.getProject(this.projectId ?? '').subscribe({
+      next: (project: any) => {
+        this.projectService.project.set(project);
+      },
+      error: () => {
+        this.router.navigate(['/page-not-found']);          
+      }
+    });
   }
   
   nameChange(name: string) {
-    const currentProject = this.project();
-    if (currentProject) {
-      this.projectService.updateProject(this.projectId ?? '', { ...currentProject, name });
-    }
+    // const currentProject = this.project();
+    // if (currentProject) {
+    //   this.projectService.updateProject(this.projectId ?? '', { ...currentProject, name });
+    // }
   }
 }

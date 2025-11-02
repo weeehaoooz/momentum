@@ -109,7 +109,7 @@ export class SwimlaneCreateTaskCardComponent implements OnInit {
       } as any;
 
       this.tasksService.createTask(projectId, newTask);
-      this.resetForm();
+      // this.resetForm();
     }
   }
 

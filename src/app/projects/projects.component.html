@@ -5,9 +5,9 @@
             <span>Create Project</span>
         </button>
     </div>
-    <div class="projects__grid" cdkDropList cdkDropListOrientation="mixed" (cdkDropListDropped)="drop($event)">
+    <div class="projects__grid" cdkDropList cdkDropListOrientation="mixed" [cdkDropListData]="projects()" (cdkDropListDropped)="drop($event)">
         @for (project of projects(); track project) {
-            <mom-project-card [project]="project" cdkDrag></mom-project-card>
+        <mom-project-card [projectData]="project" cdkDrag></mom-project-card>
         }
     </div>
 </div>
