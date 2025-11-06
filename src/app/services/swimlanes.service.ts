@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { ISwimlane } from '../components/swimlane/swimlane.interface';
-import { ITaskStatusEnum } from '../components/task-card/task.interface';
+import { IIssueStatusEnum } from '../project/components/issue-card/issue.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -13,17 +13,17 @@ export class SwimlanesService {
     {
       id: "todo",
       title: 'To Do',
-      criteria: ITaskStatusEnum.TODO
+      criteria: IIssueStatusEnum.TODO
     },
     {
       id: "in-progress",
       title: 'In Progress',
-      criteria: ITaskStatusEnum.IN_PROGRESS
+      criteria: IIssueStatusEnum.IN_PROGRESS
     },
     {
       id: "done",
       title: 'Done',
-      criteria: ITaskStatusEnum.DONE
+      criteria: IIssueStatusEnum.DONE
     }
   ] as ISwimlane[];
   

@@ -1,11 +1,8 @@
-<div class="project__wrapper">
+<div class="project__wrapper overview__wrapper">
     <div class="project__toolbar">
         <mom-project-view-nav [projectId]="projectId()"></mom-project-view-nav>
     </div>
-    <div class="project__content">
-        <h3>Overview</h3>
-        <div class="project-overview__card">
-            <div></div>
-        </div>
+    <div class="overview__container">
+        <mom-issue-list></mom-issue-list>
     </div>
 </div>

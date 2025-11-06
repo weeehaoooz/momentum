@@ -42,7 +42,7 @@ export class CreateProjectModalComponent {
       const project: IProject = {
         ...this.projectForm.value,
         swimlanes: [],
-        tasks: []
+        issues: []
       };
       this.projectService.createProject(project);
       this.modalService.closeModal();

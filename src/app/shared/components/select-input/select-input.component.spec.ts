@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TaskCardComponent } from './task-card.component';
+import { SelectInputComponent } from './select-input.component';
 
-describe('TaskCardComponent', () => {
-  let component: TaskCardComponent;
-  let fixture: ComponentFixture<TaskCardComponent>;
+describe('SelectInputComponent', () => {
+  let component: SelectInputComponent;
+  let fixture: ComponentFixture<SelectInputComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TaskCardComponent]
+      imports: [SelectInputComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TaskCardComponent);
+    fixture = TestBed.createComponent(SelectInputComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

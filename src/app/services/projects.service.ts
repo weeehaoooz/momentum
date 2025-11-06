@@ -1,6 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { ISwimlane } from '../components/swimlane/swimlane.interface';
-import { ITask, ITaskPriorityEnum, ITaskStatusEnum } from '../components/task-card/task.interface';
+import { IIssue, IIssuePriorityEnum, IIssueStatusEnum } from '../project/components/issue-card/issue.interface';
 import { StorageMap } from '@ngx-pwa/local-storage';
 
 const PROJECTS_STORAGE_KEY = 'momentum:projects';
@@ -52,9 +52,9 @@ export class ProjectsService {
       name: project.name,
       description: project.description,
       order: order,
-      totalTasks: project.tasks.length,
-      remainingTasks: project.tasks.filter(task => task.status === ITaskStatusEnum.TODO || task.status === ITaskStatusEnum.IN_PROGRESS).length,
-      highPriorityTasks: project.tasks.filter(task => task.priority === ITaskPriorityEnum.HIGH).length
+      totalIssues: project.issues.length,
+      remainingIssues: project.issues.filter(issue => issue.status === IIssueStatusEnum.TODO || issue.status === IIssueStatusEnum.IN_PROGRESS).length,
+      highPriorityIssues: project.issues.filter(issue => issue.priority === IIssuePriorityEnum.HIGH).length
     }
     const projects = this.projects().set(project.code, projectData);
     this.projects.set(new Map(projects));
@@ -97,7 +97,7 @@ export interface IProject {
   description: string;
   progress: number;
   swimlanes: ISwimlane[];
-  tasks: ITask[];
+  issues: IIssue[];
 }
 
 export interface IProjectData {
@@ -105,7 +105,7 @@ export interface IProjectData {
   name: string,
   description: string,
   order: number,
-  totalTasks: number,
-  remainingTasks: number,
-  highPriorityTasks: number
+  totalIssues: number,
+  remainingIssues: number,
+  highPriorityIssues: number
 }

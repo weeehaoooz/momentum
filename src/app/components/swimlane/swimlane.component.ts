@@ -6,16 +6,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { TaskCardComponent } from '../task-card/task-card.component';
-import { ITask } from '../task-card/task.interface';
-import { SwimlaneCreateTaskCardComponent } from "./components/swimlane-create-task-card/swimlane-create-task-card.component";
+import { IIssue } from '../../project/components/issue-card/issue.interface';
 import { ISwimlane } from './swimlane.interface';
 import { IProject } from '../../services/projects.service';
+import { IssueCardComponent } from '../../project/components/issue-card/issue-card.component';
+import { CreateIssueCardComponent } from "../../project/components/issue-list/components/create-issue-card/create-issue-card.component";
 
 @Component({
   selector: 'mom-swimlane',
   imports: [
-    TaskCardComponent,
+    IssueCardComponent,
     TitleCasePipe,
     DragDropModule,
     MatIconModule,
@@ -23,8 +23,8 @@ import { IProject } from '../../services/projects.service';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    SwimlaneCreateTaskCardComponent
-  ],
+    CreateIssueCardComponent
+],
   templateUrl: './swimlane.component.html',
   styleUrl: './swimlane.component.scss'
 })
@@ -32,47 +32,31 @@ export class SwimlaneComponent {
   project = input<IProject | undefined>();
   swimlane = input<ISwimlane>();
   connectedTo = input<string[]>([]);
-  taskMoved = output<ITask>();
+  issueMoved = output<IIssue>();
 
-  showNewTaskCard = signal<boolean>(false);
+  showNewIssueCard = signal<boolean>(false);
 
   critera = computed(() => this.swimlane()?.criteria);
-  tasks = computed(() => {
-    const tasks = this.swimlane()?.tasks ?? [];
+  issues = computed(() => {
+    const issues = this.swimlane()?.issues ?? [];
     const criteria = this.swimlane()?.criteria;
-    return tasks.filter(task => task?.status === criteria);
+    return issues.filter(issue => issue?.status === criteria);
   });
 
-  // drop(event: CdkDragDrop<any>) {
-  //   const movedTask = event.item.data;
-
-  //   movedTask.status = this.swimlane()?.criteria ?? null;
-
-
-  //   // Use .set() instead of .emit() for signal outputs
-  //   this.taskMoved.emit({
-  //     task: movedTask,
-  //     prevSwimlaneId: event.previousContainer.id,
-  //     nextSwimlaneId: event.container.id,
-  //     currentIndex: event.previousIndex,
-  //     updatedIndex: event.currentIndex
-  //   });
-  // }
-
-  drop(event: CdkDragDrop<ITask[]>) {
+  drop(event: CdkDragDrop<IIssue[]>) {
     const previousContainer = event.previousContainer;
     const currentContainer = event.container;
 
     if (event.previousContainer === event.container) {
       // Move within the same list
-      moveItemInArray(this.tasks(), event.previousIndex, event.currentIndex);
+      moveItemInArray(this.issues(), event.previousIndex, event.currentIndex);
       return;
     } else {
-      const movedTask = previousContainer.data[event.previousIndex];
+      const movedIssue = previousContainer.data[event.previousIndex];
       const newStatus = this.swimlane()?.criteria ?? null;
 
       // Update task status based on destination swimlane
-      movedTask.status = newStatus;
+      movedIssue.status = newStatus;
 
       transferArrayItem(
         previousContainer.data,
@@ -82,11 +66,11 @@ export class SwimlaneComponent {
       );
 
       // Use .set() instead of .emit() for signal outputs
-      this.taskMoved.emit(movedTask);
+      this.issueMoved.emit(movedIssue);
     }
   }
 
-  toggleNewTaskCard() {
-    this.showNewTaskCard.set(!this.showNewTaskCard());
+  toggleNewIssueCard() {
+    this.showNewIssueCard.set(!this.showNewIssueCard());
   }
 }

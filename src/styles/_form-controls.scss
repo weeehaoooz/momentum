@@ -1,0 +1,30 @@
+@use "colors" as *;
+
+.mom-input__container {
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+}
+.mom-input__label {
+    font-size: .85em;
+    color: $grey-color;
+}
+
+.mom-input {
+    border: 0;
+    outline: 0;
+    font-size: 1.1em;
+    line-height: 1.1;
+    padding: .35em;
+    flex: 1;
+    border-bottom: 1px solid transparent;
+    font: inherit;
+
+    &:hover {
+        border-bottom: 1px solid $border-highlight-color;
+    }
+
+    &:focus {
+        border-bottom: 1px solid $primary-color;
+    }
+}

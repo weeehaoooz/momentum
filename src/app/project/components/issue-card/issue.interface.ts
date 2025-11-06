@@ -1,27 +1,27 @@
-export interface ITask {
+export interface IIssue {
     id: string;
     title: string;
     description: string | null;
-    status?: ITaskStatusEnum | null;
-    priority?: ITaskPriorityEnum | null;
+    status?: IIssueStatusEnum | null;
+    priority?: IIssuePriorityEnum | null;
     due_date?: Date | null;
     created_at?: Date ;
     updated_at?: Date | null;
-    subTasks?: ITask[];
+    subTasks?: IIssue[];
 }
 
-export interface IProjectTask extends ITask {
+export interface IProjectTask extends IIssue {
     projectIndex: number;
 }
 
-export enum ITaskStatusEnum {
+export enum IIssueStatusEnum {
     BACKLOG = 'BACKLOG',
     TODO = 'TODO',
     IN_PROGRESS = 'IN_PROGRESS',
     DONE = 'DONE'
 }
 
-export enum ITaskPriorityEnum {
+export enum IIssuePriorityEnum {
     MINIMAL = 'MINIMAL',
     LOW = 'LOW',
     MEDIUM = 'MEDIUM',

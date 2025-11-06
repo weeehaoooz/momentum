@@ -1,0 +1,16 @@
+<div class="issue-list__container">
+    <div class="issue-list__header">
+        <h3>Issues</h3>
+        @if(!showNewIssueCard()) {
+        <button class="mom-icon__btn" (click)="toggleNewIssueCard()">
+            <mat-icon>add</mat-icon>
+        </button>
+        }
+    </div>
+    <div class="issue-list__body">
+        @if(showNewIssueCard()) {
+        <mom-create-issue-card [project]="project()" (close)="toggleNewIssueCard()"></mom-create-issue-card>
+        }
+        <mom-issue-line></mom-issue-line>
+    </div>
+</div>

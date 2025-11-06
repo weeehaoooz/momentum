@@ -5,29 +5,29 @@
             <button class=mom-icon__btn>
                 <mat-icon>sort</mat-icon>
             </button>
-            @if (!showNewTaskCard()) {
-                <button class=mom-icon__btn (click)="toggleNewTaskCard()">
+            @if (!showNewIssueCard()) {
+                <button class=mom-icon__btn (click)="toggleNewIssueCard()">
                     <mat-icon>add</mat-icon>
                 </button>
             }
         </div>
     </div>
-    <div class="tasks__container"
+    <div class="issues__container"
         [id]="swimlane()?.id ?? 'Swimlane'"
         cdkDropList
-        [cdkDropListData]="tasks()"
+        [cdkDropListData]="issues()"
         [cdkDropListConnectedTo]="connectedTo()"
         (cdkDropListDropped)="drop($event)"
         >
-        @if (showNewTaskCard()) {
-            <mom-swimlane-create-task-card [project]="project()" [swimlane]="swimlane()" (close)="toggleNewTaskCard()"></mom-swimlane-create-task-card>
+        @if (showNewIssueCard()) {
+            <mom-create-issue-card [project]="project()" (close)="toggleNewIssueCard()"></mom-create-issue-card>
         }
-        @for (task of tasks(); track $index ) {
-            <mom-task-card 
-                [task]="task" 
+        @for (issue of issues(); track $index ) {
+            <mom-issue-card 
+                [issue]="issue" 
                 [class.last]="$index == $count - 1"
                 cdkDrag>
-            </mom-task-card>
+            </mom-issue-card>
         }
     </div>
 </div>

@@ -14,7 +14,7 @@
     <div class="swimlanes__container">
         @for (swimlane of swimlanes(); track $index) {
         <mom-swimlane [project]="project()"
-          [swimlane]="swimlane" [connectedTo]="connectedIds(swimlane.id)" (taskMoved)="onTaskMoved($event)">
+          [swimlane]="swimlane" [connectedTo]="connectedIds(swimlane.id)" (issueMoved)="onIssueMoved($event)">
         </mom-swimlane>
         }
     </div>

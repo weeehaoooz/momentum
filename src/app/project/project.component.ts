@@ -1,8 +1,7 @@
 import { Component, computed, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
-import { ProjectsService } from '../services/projects.service';
-import { ITaskStatusEnum } from '../components/task-card/task.interface';
+import { IIssueStatusEnum } from './components/issue-card/issue.interface';
 import { ProjectNameEditorComponent } from "./components/project-name-editor/project-name-editor.component";
 import { ProjectService } from './services/project.service';
 
@@ -26,10 +25,10 @@ export class ProjectComponent {
 
   completionPercentage = computed(() => {
     if (!this.project()) return 0;
-    const tasks = this.project()?.tasks ?? [];
-    if (tasks.length === 0) return 0;
-    const done = tasks.filter(t => t.status === ITaskStatusEnum.DONE).length;
-    return Math.round((done / tasks.length) * 100);
+    const issues = this.project()?.issues ?? [];
+    if (issues.length === 0) return 0;
+    const done = issues.filter(t => t.status === IIssueStatusEnum.DONE).length;
+    return Math.round((done / issues.length) * 100);
   });
 
   ngOnInit() {

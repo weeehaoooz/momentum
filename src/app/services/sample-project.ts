@@ -1,4 +1,4 @@
-import { ITaskPriorityEnum, ITaskStatusEnum } from "../components/task-card/task.interface";
+import { ITaskPriorityEnum, ITaskStatusEnum } from "../project/components/issue-card/issue.interface";
 
 export const sampleProjects = [
     {

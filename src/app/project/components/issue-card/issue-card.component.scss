@@ -1,7 +1,7 @@
 @use "colors" as *;
 @use "defaults" as *;
 
-.task__card { 
+.issue__card { 
     display: flex;
     flex-direction: column;
     background-color: $white-color;
@@ -10,7 +10,7 @@
     gap: .8em;
     border-radius: .2em;
 
-    .task__header {
+    .issue__header {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -54,7 +54,7 @@
         }
     }
 
-    .task__body {
+    .issue__body {
         display: flex;
         flex-direction: column;
         padding: 0;
@@ -65,12 +65,12 @@
           font-size: .9em;
         }
 
-        .sub-tasks__container {
+        .sub-issues__container {
             display: flex;
             flex-direction: column;
             gap: .2em;
 
-            .sub-tasks__header {
+            .sub-issues__header {
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
@@ -82,7 +82,7 @@
                 }
             }
 
-            .sub-tasks__body {
+            .sub-issues__body {
                 display: flex;
                 flex-direction: column;
                 gap: .2em;
@@ -90,17 +90,17 @@
         }
     }
 
-    .task__footer {
+    .issue__footer {
       p {
         font-size: 1em;
       }
     }
 }
 
-// :host(.cdk-drag-preview) .task__card {
+// :host(.cdk-drag-preview) .issue__card {
 //     border-bottom: $border;
 // }
 
-// :host(.last) .task__card {
+// :host(.last) .issue__card {
 //   border-bottom: $border !important;
 // }

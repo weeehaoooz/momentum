@@ -1,8 +1,8 @@
-import { ITask, ITaskStatusEnum } from "../task-card/task.interface";
+import { IIssue, IIssueStatusEnum } from "../../project/components/issue-card/issue.interface";
 
 export interface ISwimlane {
     id: string;
     title: string;
-    criteria: ITaskStatusEnum;
-    tasks?: ITask[];
+    criteria: IIssueStatusEnum;
+    issues?: IIssue[];
 }

@@ -1,0 +1,11 @@
+:host {
+    flex: 1;
+}
+
+.overview__container {
+    display: flex;
+    flex-direction: row;
+    padding: 0 1rem;
+    gap: 1rem;
+    flex: 1;
+}
