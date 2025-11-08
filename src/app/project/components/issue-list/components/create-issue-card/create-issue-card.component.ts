@@ -1,15 +1,16 @@
-import { Component, input, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { IProject } from '../../../../../services/projects.service';
 import { MatIconModule } from '@angular/material/icon';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { SelectInputComponent } from "../../../../../shared/components/select-input/select-input.component";
 import { SelectOptionComponent } from "../../../../../shared/components/select-input/select-option/select-option.component";
-import { IIssuePriorityEnum } from '../../../issue-card/issue.interface';
+import { IIssue, IIssuePriorityEnum } from '../../../issue-card/issue.interface';
 import { CommonModule } from '@angular/common';
+import { ProjectService } from '../../../../services/project.service';
 
 @Component({
   selector: 'mom-create-issue-card',
@@ -29,9 +30,20 @@ import { CommonModule } from '@angular/common';
   styleUrl: './create-issue-card.component.scss'
 })
 export class CreateIssueCardComponent {
+  private projectService = inject(ProjectService);
 
   project = input<IProject | undefined>(undefined);
   close = output<any>();
+
+  issueForm!: FormGroup;
+
+  ngOnInit() {
+    this.issueForm = new FormGroup({
+      title: new FormControl('', [Validators.required, Validators.maxLength(256)]),
+      description: new FormControl(''),
+      priority: new FormControl(null)
+    });
+  }
 
   // derive select options from the enum so the UI always reflects the enum values
   // force descending order (highest first) while still deriving values from the enum
@@ -80,10 +92,24 @@ export class CreateIssueCardComponent {
   }
 
   createIssue() {
-
+    if (this.issueForm.valid) {
+      const code = this.project()?.code;
+      const size = this.project()?.count;
+      const payload = {
+        projectCode: code,
+        issue: {
+          id: code+'_'+size,
+          ...this.issueForm.value,
+          priority: this.issueForm.value.priority ?? IIssuePriorityEnum.NONE
+        } as IIssue
+      }
+      this.projectService.createIssue(payload);
+      this.closeEmitter();
+    }
   }
 
+
   closeEmitter() {
-      this.close.emit("");
+    this.close.emit("");
   }
 }

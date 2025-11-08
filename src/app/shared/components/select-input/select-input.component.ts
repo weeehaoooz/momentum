@@ -1,8 +1,8 @@
-import { AfterViewInit, Component, computed, ContentChildren, effect, ElementRef, EmbeddedViewRef, forwardRef, HostListener, input, QueryList, signal, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, ContentChildren, effect, ElementRef, forwardRef, HostListener, input, QueryList, signal, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { SelectOptionComponent } from './select-option/select-option.component';
-import { CommonModule, NgTemplateOutlet } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { SelectOptionComponent } from './select-option/select-option.component';
 
 @Component({
   selector: 'mom-select-input',
@@ -25,12 +25,16 @@ export class SelectInputComponent implements ControlValueAccessor {
   placeholder = input('Select an option');
   isOpen = signal(false);
   value = signal<any>(null);
+  isAbove = signal(false);
 
   @ContentChildren(SelectOptionComponent)
   options!: QueryList<SelectOptionComponent>;
 
   @ViewChild('trigger', { static: true })
   triggerEl!: ElementRef<HTMLElement>;
+
+  @ViewChild('panel') 
+  panelEl?: ElementRef<HTMLElement>;
 
   @ViewChild('triggerContainer', { read: ViewContainerRef, static: true })
   triggerContainer!: ViewContainerRef;
@@ -52,6 +56,25 @@ export class SelectInputComponent implements ControlValueAccessor {
     if (!this.isOpen()) this.setPanelPosition();
     this.isOpen.update((v) => !v);
     this.updateSelectedLabel();
+  }
+
+  onTriggerKeydown(event: KeyboardEvent) {
+    const key = event.key;
+
+    // Open dropdown on Enter or Space
+    if ((key === 'Enter' || key === ' ') && !this.isOpen()) {
+      event.preventDefault();
+      this.toggleOpen();
+      return;
+    }
+
+    // Close dropdown on Escape
+    if (key === 'Escape' && this.isOpen()) {
+      event.preventDefault();
+      this.isOpen.set(false);
+      this.triggerEl.nativeElement.focus();
+      return;
+    }
   }
 
   private updateSelectedLabel() {
@@ -81,11 +104,28 @@ export class SelectInputComponent implements ControlValueAccessor {
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
   }
-
   private setPanelPosition() {
     if (!this.triggerEl) return;
+
     const rect = this.triggerEl.nativeElement.getBoundingClientRect();
-    this.panelTop.set(rect.bottom + window.scrollY);
+    const viewportHeight = window.innerHeight;
+    const panelHeight = this.panelEl?.nativeElement.offsetHeight ?? 200;
+    const triggerHeight = this.triggerEl.nativeElement.offsetHeight;
+
+    const spaceBelow = viewportHeight - rect.bottom;
+    const spaceAbove = rect.top;
+
+    const shouldOpenAbove = spaceBelow < panelHeight && spaceAbove > spaceBelow;
+    this.isAbove.set(shouldOpenAbove);
+
+    if (shouldOpenAbove) {
+      // Position ABOVE (bottom of panel aligns with top of trigger)
+      this.panelTop.set(rect.top + window.scrollY - panelHeight - triggerHeight - 8);
+    } else {
+      // Position BELOW (top of panel aligns with bottom of trigger)
+      this.panelTop.set(rect.bottom + window.scrollY);
+    }
+
     this.panelLeft.set(rect.left + window.scrollX);
     this.panelWidth.set(rect.width);
   }

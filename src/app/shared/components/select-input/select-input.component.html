@@ -1,6 +1,6 @@
 <div class="select__input" [class.focused]="isOpen() || !!value()">
     <p class="mom-input__label">{{ label() }}</p>
-    <div #trigger class="select__trigger" (click)="toggleOpen()">
+    <div #trigger tabindex="0" class="select__trigger" (click)="toggleOpen()" (keydown.enter)="toggleOpen()">
         <ng-container #triggerContainer></ng-container>
         @if (!value() || isOpen()) {
         <ng-container>

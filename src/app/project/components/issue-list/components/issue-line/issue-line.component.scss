@@ -1,0 +1,36 @@
+@use "colors" as *;
+@use "defaults" as *;
+
+.issue__line { 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: $white-color;
+    padding: .5em .3em;
+    border: $border;
+    border-radius: .2em;
+
+    .issue__info {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: .65em;
+
+        .issue-link {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: .25em;
+            font-size:.85em;
+            color: $primary-color;
+        }
+    }
+
+    .issue-title {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: .5em;
+        font-size: 1em;
+    }
+}

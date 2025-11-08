@@ -1,5 +1,13 @@
 <div class="issue__line">
-    <div class="issue__line__title">
-        <h3>{{issue()?.title | titlecase}}</h3>
+    <div class="issue__info">
+        <div class="issue-link">
+            <mat-icon class="priority-icon material-symbols-rounded"
+                [ngStyle]="{'color': priorityIconColor(issue()?.priority?.toUpperCase())}"
+                [class.empty]="priorityIconColor(issue()?.priority?.toUpperCase()) === ''" aria-hidden="true">
+                {{ priorityIcon(issue()?.priority?.toUpperCase()) }}
+            </mat-icon>
+            <p class="issue-id">{{issue()?.id}}</p>
+        </div>
+        <p class="issue-title">{{issue()?.title}}</p>
     </div>
 </div>

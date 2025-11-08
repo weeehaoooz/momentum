@@ -62,6 +62,11 @@ export class ProjectsService {
 
     // Creating Project under it's own key
     const projectStorageKey = 'STORAGE_' + project.code
+    // Setting defaults
+    project = {
+      ...project,
+      count: 0,
+    }
     this.storage.set(projectStorageKey, project).subscribe({
       next: () => {
         console.log("project created successfully");
@@ -95,6 +100,7 @@ export interface IProject {
   name: string;
   code: string;
   description: string;
+  count: number;
   progress: number;
   swimlanes: ISwimlane[];
   issues: IIssue[];

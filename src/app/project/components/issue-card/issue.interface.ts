@@ -22,6 +22,7 @@ export enum IIssueStatusEnum {
 }
 
 export enum IIssuePriorityEnum {
+    NONE = 'NONE',
     MINIMAL = 'MINIMAL',
     LOW = 'LOW',
     MEDIUM = 'MEDIUM',

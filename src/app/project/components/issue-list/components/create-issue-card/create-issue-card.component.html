@@ -1,21 +1,21 @@
-<form class="create-issue__card">
+<form class="create-issue__card" [formGroup]="issueForm" (ngSubmit)="createIssue()">
     <div class="create-issue__header">
         <div class="issue-title__container">
             <mat-icon>task</mat-icon>
-            <input class="mom-input issue-title" type="text" placeholder="New issue" />
+            <input formControlName="title" class="mom-input issue-title" type="text" placeholder="New issue" />
         </div>
-        <button tabindex="-1" class="mom-icon__btn" (click)="closeEmitter()">
+        <button tabindex="-1" class="mom-icon__btn" type="button"  (click)="closeEmitter()">
             <mat-icon>close</mat-icon>
         </button>
     </div>
     <div class="create-issue__body">
         <div class="mom-input__container">
             <p class="mom-input__label">Description</p>
-            <textarea class="mom-input issue-description" placeholder="Describe the issue" rows="5"></textarea>
+            <textarea formControlName="description" class="mom-input issue-description" placeholder="Describe the issue" rows="5"></textarea>
         </div>
     </div>
     <div class="create-issue__footer">
-        <mom-select-input label="Priority" placeholder="Issue priority">
+        <mom-select-input formControlName="priority" label="Priority" placeholder="Issue priority">
             @for (p of priorities; track $index) {
             <mom-select-option [value]="p">
                 <span class="priority-option">
