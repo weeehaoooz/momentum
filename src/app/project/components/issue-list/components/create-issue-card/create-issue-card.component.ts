@@ -11,6 +11,7 @@ import { SelectOptionComponent } from "../../../../../shared/components/select-i
 import { IIssue, IIssuePriorityEnum } from '../../../issue-card/issue.interface';
 import { CommonModule } from '@angular/common';
 import { ProjectService } from '../../../../services/project.service';
+import { SpeechToTextButtonComponent } from '../../../../../shared/components/speech-to-text-button/speech-to-text-button.component';
 
 @Component({
   selector: 'mom-create-issue-card',
@@ -24,7 +25,8 @@ import { ProjectService } from '../../../../services/project.service';
     MatSelectModule,
     MatIconModule,
     SelectInputComponent,
-    SelectOptionComponent
+    SelectOptionComponent,
+    SpeechToTextButtonComponent
   ],
   templateUrl: './create-issue-card.component.html',
   styleUrl: './create-issue-card.component.scss'
@@ -91,6 +93,11 @@ export class CreateIssueCardComponent {
     return this._priorityColorMap[key] ?? 'minimal';
   }
 
+  appendTranscript(text: string) {
+    const descripptionCtrl = this.issueForm.get('description');
+    descripptionCtrl?.setValue((descripptionCtrl?.value || '') + ' ' + text);
+  }
+
   createIssue() {
     if (this.issueForm.valid) {
       const code = this.project()?.code;
@@ -98,7 +105,7 @@ export class CreateIssueCardComponent {
       const payload = {
         projectCode: code,
         issue: {
-          id: code+'_'+size,
+          id: code + '_' + size,
           ...this.issueForm.value,
           priority: this.issueForm.value.priority ?? IIssuePriorityEnum.NONE
         } as IIssue

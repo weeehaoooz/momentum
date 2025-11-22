@@ -1,14 +1,13 @@
 import { Component, computed, inject } from '@angular/core';
-import { ProjectViewNavComponent } from "../components/project-view-nav/project-view-nav.component";
-import { ProjectsService } from '../../services/projects.service';
-import { ProjectService } from '../services/project.service';
 import { IssueListComponent } from "../components/issue-list/issue-list.component";
+import { ProjectViewNavComponent } from "../components/project-view-nav/project-view-nav.component";
+import { ProjectService } from '../services/project.service';
 
 @Component({
   selector: 'mom-overview',
   imports: [
     ProjectViewNavComponent,
-    IssueListComponent
+    IssueListComponent,
 ],
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.scss', '../project-base.scss']

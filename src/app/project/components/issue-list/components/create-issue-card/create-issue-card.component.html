@@ -12,6 +12,7 @@
         <div class="mom-input__container">
             <p class="mom-input__label">Description</p>
             <textarea formControlName="description" class="mom-input issue-description" placeholder="Describe the issue" rows="5"></textarea>
+            <mom-speech-to-text-button (transcript)="appendTranscript($event)"></mom-speech-to-text-button>
         </div>
     </div>
     <div class="create-issue__footer">

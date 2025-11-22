@@ -24,8 +24,11 @@
     "@angular/router": "^20.3.6",
     "@angular/service-worker": "^20.3.6",
     "@angular/ssr": "^20.3.6",
+    "@huggingface/transformers": "^3.7.6",
     "@ngx-pwa/local-storage": "^20.0.1",
     "express": "^4.18.2",
+    "onnxruntime-node": "^1.23.2",
+    "onnxruntime-web": "^1.23.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"

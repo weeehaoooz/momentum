@@ -1,0 +1,19 @@
+@use "defaults" as *;
+
+.mic-btn {
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mic-btn.active mat-icon {
+  color: var(--mat-primary);
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
