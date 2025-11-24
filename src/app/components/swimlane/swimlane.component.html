@@ -20,7 +20,7 @@
         (cdkDropListDropped)="drop($event)"
         >
         @if (showNewIssueCard()) {
-            <mom-create-issue-card [project]="project()" (close)="toggleNewIssueCard()"></mom-create-issue-card>
+            <mom-create-issue-card [project]="project()" (status)="swimlane()?.criteria" (close)="toggleNewIssueCard()"></mom-create-issue-card>
         }
         @for (issue of issues(); track $index ) {
             <mom-issue-card 

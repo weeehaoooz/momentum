@@ -1,17 +1,17 @@
+import { CommonModule } from '@angular/common';
 import { Component, inject, input, output } from '@angular/core';
-import { IProject } from '../../../../../services/projects.service';
-import { MatIconModule } from '@angular/material/icon';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { IProject } from '../../../../../services/projects.service';
 import { SelectInputComponent } from "../../../../../shared/components/select-input/select-input.component";
 import { SelectOptionComponent } from "../../../../../shared/components/select-input/select-option/select-option.component";
-import { IIssue, IIssuePriorityEnum } from '../../../issue-card/issue.interface';
-import { CommonModule } from '@angular/common';
-import { ProjectService } from '../../../../services/project.service';
 import { SpeechToTextButtonComponent } from '../../../../../shared/components/speech-to-text-button/speech-to-text-button.component';
+import { ProjectService } from '../../../../services/project.service';
+import { IIssue, IIssuePriorityEnum, IIssueStatusEnum } from '../../../issue-card/issue.interface';
 
 @Component({
   selector: 'mom-create-issue-card',
@@ -35,6 +35,8 @@ export class CreateIssueCardComponent {
   private projectService = inject(ProjectService);
 
   project = input<IProject | undefined>(undefined);
+  status = input<IIssueStatusEnum>(IIssueStatusEnum.TODO);
+  
   close = output<any>();
 
   issueForm!: FormGroup;
@@ -107,7 +109,8 @@ export class CreateIssueCardComponent {
         issue: {
           id: code + '_' + size,
           ...this.issueForm.value,
-          priority: this.issueForm.value.priority ?? IIssuePriorityEnum.NONE
+          priority: this.issueForm.value.priority ?? IIssuePriorityEnum.NONE,
+          status: this.status()
         } as IIssue
       }
       this.projectService.createIssue(payload);

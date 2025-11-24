@@ -1,0 +1,22 @@
+@use "colors" as *;
+
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.issue-status__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: calc(100% - 10px);
+    color: $primary-color;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 1em;
+}

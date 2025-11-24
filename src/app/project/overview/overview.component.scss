@@ -2,18 +2,19 @@
     flex: 1;
 }
 
-.project__wrapper.overview__wrapper {
+.overview__wrapper {
     display: flex;
     flex-direction: row;
-    padding: 0 1rem;
     gap: 1rem;
     flex: 1;
 
-    .project__container {
+    .overview__container{
         display: flex;
         flex-direction: column;
         flex: 2;
+        padding: 0 1rem;
     }
+
     .chatbot__container {
         display: flex;
         flex-direction: column;

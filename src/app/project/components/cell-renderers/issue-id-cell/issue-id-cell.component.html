@@ -1,0 +1,8 @@
+<div class="issue-id__container">
+    <mat-icon class="priority-icon material-symbols-rounded"
+        [ngStyle]="{'color': priorityIconColor(issue()?.priority?.toUpperCase())}"
+        [class.empty]="priorityIconColor(issue()?.priority?.toUpperCase()) === ''" aria-hidden="true">
+        {{ priorityIcon(issue()?.priority?.toUpperCase()) }}
+    </mat-icon>
+    <p class="issue-id">{{issue()?.id}}</p>
+</div>

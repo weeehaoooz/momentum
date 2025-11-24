@@ -19,6 +19,14 @@
         padding: .5em .5em .5em 1em;
     }
 
+    .issues__data {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex: 1;
+        min-height: 200px;
+    }
+
     .issue-list__body {
         display: flex;
         flex-direction: column;

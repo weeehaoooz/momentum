@@ -1,7 +1,7 @@
 @use "colors" as *;
 @use "defaults" as *;
 
-.issue__line { 
+.issue__line {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -21,16 +21,24 @@
             flex-direction: row;
             align-items: center;
             gap: .25em;
-            font-size:.85em;
+            font-size: .85em;
             color: $primary-color;
+        }
+
+        .issue-title {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: .5em;
+            font-size: 1em;
         }
     }
 
-    .issue-title {
+    .issue__actions {
         display: flex;
         flex-direction: row;
         align-items: center;
-        gap: .5em;
-        font-size: 1em;
+        gap: .65em;
+        font-size: .85em;
     }
 }
