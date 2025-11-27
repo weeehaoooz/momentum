@@ -1,10 +1,13 @@
 <div class="project__wrapper overview__wrapper">
-    <div class="project__container">
+    <div class="overview__container">
         <div class="project__toolbar">
             <mom-project-view-nav [projectId]="projectId()"></mom-project-view-nav>
         </div>
-        <div class="overview__container">
+        <div class="issues__container">
             <mom-issue-list></mom-issue-list>
         </div>
+    </div>
+    <div class="chatbot__container">
+        <mom-chatbot></mom-chatbot>
     </div>
 </div>

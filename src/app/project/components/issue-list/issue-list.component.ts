@@ -1,26 +1,20 @@
+import { CdkDragDrop, moveItemInArray } from "@angular/cdk/drag-drop";
 import { Component, computed, inject, signal } from '@angular/core';
-import { IssueLineComponent } from "./components/issue-line/issue-line.component";
-import { ProjectService } from '../../services/project.service';
-import { MatIconModule } from '@angular/material/icon';
-import { CreateIssueCardComponent } from './components/create-issue-card/create-issue-card.component';
 import { MatButtonModule } from '@angular/material/button';
-import { CdkDrag, CdkDragDrop, CdkDropList, moveItemInArray } from "@angular/cdk/drag-drop";
-import { IProject } from '../../../services/projects.service';
+import { MatIconModule } from '@angular/material/icon';
 import { AgGridAngular } from 'ag-grid-angular';
-import { AutoSizeStrategy, ColDef, GridOptions } from 'ag-grid-community';
-import { IIssue } from '../issue-card/issue.interface';
+import { ColDef, GridOptions } from 'ag-grid-community';
+import { IProject } from '../../../services/projects.service';
+import { ProjectService } from '../../services/project.service';
 import { IssueIdCellComponent } from '../cell-renderers/issue-id-cell/issue-id-cell.component';
 import { IssueStatusCellComponent } from '../cell-renderers/issue-status-cell/issue-status-cell.component';
+import { IIssue } from '../issue-card/issue.interface';
 
 @Component({
   selector: 'mom-issue-list',
   imports: [
-    IssueLineComponent,
     MatButtonModule,
     MatIconModule,
-    CreateIssueCardComponent,
-    CdkDropList,
-    CdkDrag,
     AgGridAngular
   ],
   templateUrl: './issue-list.component.html',
@@ -46,21 +40,17 @@ export class IssueListComponent {
       flex: 1,
       resizable: true,
     },
-    { field: 'status', headerName: 'Status',
+    {
+      field: 'status', headerName: 'Status',
       cellRenderer: IssueStatusCellComponent,
-      sortable: true },
+      sortable: true
+    },
     {
       field: 'description', headerName: 'Description',
       suppressAutoSize: true,
       flex: 1, sortable: true
     },
   ] as ColDef<IIssue>[];
-
-  // autoSizeStrategy: AutoSizeStrategy = {
-  //   type: "",
-  //   defaultMaxWidth: 150,
-  //   defaultMinWidth: 80,
-  // };
 
   gridOptions = {
     rowDragEntireRow: true,

@@ -1,6 +1,7 @@
 import { Component, computed, inject } from '@angular/core';
 import { IssueListComponent } from "../components/issue-list/issue-list.component";
 import { ProjectViewNavComponent } from "../components/project-view-nav/project-view-nav.component";
+import { ChatbotComponent } from '../components/chatbot/chatbot.component';
 import { ProjectService } from '../services/project.service';
 
 @Component({
@@ -8,7 +9,8 @@ import { ProjectService } from '../services/project.service';
   imports: [
     ProjectViewNavComponent,
     IssueListComponent,
-],
+    ChatbotComponent
+  ],
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.scss', '../project-base.scss']
 })

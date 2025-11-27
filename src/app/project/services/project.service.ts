@@ -41,19 +41,40 @@ export class ProjectService {
 
   createIssue(payload: any) {
     const projectCode = payload.projectCode;
-
-
     const issuePayload = payload.issue;
-    console.log(issuePayload);
+
     this.getProject(projectCode).subscribe({
       next: (project: any) => {
         const issues = project.issues;
+
+        // Generate ID
+        project.count = (project.count || 0) + 1;
+        issuePayload.id = `${projectCode}-${project.count}`;
+
         issues.push(issuePayload);
-        project.count = project.count + 1;
         this.updateProject(projectCode, project);
       }
     })
   }
 
+  createIssues(payload: { projectCode: string, issues: any[] }) {
+    const projectCode = payload.projectCode;
+    const newIssues = payload.issues;
 
+    this.getProject(projectCode).subscribe({
+      next: (project: any) => {
+        const issues = project.issues;
+        let currentCount = project.count || 0;
+
+        newIssues.forEach(issue => {
+          currentCount++;
+          issue.id = `${projectCode}-${currentCount}`;
+        });
+
+        issues.push(...newIssues);
+        project.count = currentCount;
+        this.updateProject(projectCode, project);
+      }
+    })
+  }
 }

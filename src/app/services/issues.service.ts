@@ -6,11 +6,4 @@ import { IIssue, IIssueStatusEnum } from '../project/components/issue-card/issue
 })
 export class IssuesService {
   
-  
-  getStatus(status: string) {
-  }
-
-  createStatus() {
-    
-  }
 }
