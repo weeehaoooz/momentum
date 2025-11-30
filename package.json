@@ -25,7 +25,7 @@
     "@angular/service-worker": "^21.0.1",
     "@angular/ssr": "^21.0.1",
     "@huggingface/transformers": "^3.7.6",
-    "@ngx-pwa/local-storage": "^20.0.1",
+    "@ngx-pwa/local-storage": "^21.0.0",
     "ag-grid-angular": "^34.3.1",
     "ag-grid-enterprise": "^34.3.1",
     "express": "^4.18.2",
