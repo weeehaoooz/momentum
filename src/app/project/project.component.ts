@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, computed, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,13 +12,12 @@ import { ProjectService } from './services/project.service';
 @Component({
   selector: 'mom-project',
   imports: [
-    CommonModule,
     MatIconModule,
     RouterOutlet,
     ProjectNameEditorComponent,
     MatButtonModule,
-    MatTooltipModule,
-  ],
+    MatTooltipModule
+],
   templateUrl: './project.component.html',
   styleUrl: './project.component.scss'
 })
