@@ -55,9 +55,9 @@ export class ProjectComponent {
   }
 
   nameChange(name: string) {
-    // const currentProject = this.project();
-    // if (currentProject) {
-    //   this.projectService.updateProject(this.projectId ?? '', { ...currentProject, name });
-    // }
+    const currentProject = this.project();
+    if (currentProject) {
+      this.projectService.updateProject({ ...currentProject, name });
+    }
   }
 }
