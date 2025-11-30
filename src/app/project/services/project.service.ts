@@ -26,12 +26,13 @@ export class ProjectService {
     })
   }
 
-  updateProject(projectCode: string, project: IProject) {
+  updateProject(project: IProject) {
+    const projectCode = project.code;
     const projectStorageKey = 'STORAGE_' + projectCode;
     this.storagMap.set(projectStorageKey, project).subscribe({
       next: () => {
         this.refreshProject(projectCode);
-        console.log("issue created successfully");
+        console.log("Updated Project");
       },
       error: error => {
         console.error(error);
@@ -49,10 +50,11 @@ export class ProjectService {
 
         // Generate ID
         project.count = (project.count || 0) + 1;
-        issuePayload.id = `${projectCode}-${project.count}`;
+        project.code = payload.projectCode;
+        issuePayload.id = `${project.code}-${project.count}`;
 
         issues.push(issuePayload);
-        this.updateProject(projectCode, project);
+        this.updateProject(project);
       }
     })
   }
@@ -73,8 +75,34 @@ export class ProjectService {
 
         issues.push(...newIssues);
         project.count = currentCount;
-        this.updateProject(projectCode, project);
+        project.code = projectCode;
+        this.updateProject(project);
       }
     })
+  }
+
+  deleteIssue(issueId: string | undefined) {
+    // Find the project that contains this issue and remove it
+    if (issueId) {
+      const projectCode = issueId.split('-')[0]; // Assuming the format is PROJECT-COUNT
+
+      this.getProject(projectCode).subscribe({
+        next: (project: any) => {
+          if (project && project.issues) {
+            const issues = project.issues;
+            const issueIndex = issues.findIndex((issue: any) => issue.id === issueId);
+
+            if (issueIndex !== -1) {
+              issues.splice(issueIndex, 1);
+              this.updateProject(project);
+            }
+          }
+        },
+        error: (error) => {
+          console.error('Error deleting issue:', error);
+        }
+      });
+    }
+
   }
 }

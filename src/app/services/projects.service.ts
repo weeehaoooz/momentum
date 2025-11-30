@@ -1,5 +1,5 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { ISwimlane } from '../components/swimlane/swimlane.interface';
+import { ISwimlane } from '../project/components/swimlane/swimlane.interface';
 import { IIssue, IIssuePriorityEnum, IIssueStatusEnum } from '../project/components/issue-card/issue.interface';
 import { StorageMap } from '@ngx-pwa/local-storage';
 

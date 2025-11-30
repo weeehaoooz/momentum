@@ -1,5 +1,5 @@
 import { Component, computed, inject } from '@angular/core';
-import { SwimlaneComponent } from '../../components/swimlane/swimlane.component';
+import { SwimlaneComponent } from '../components/swimlane/swimlane.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { SwimlanesService } from '../../services/swimlanes.service';
@@ -52,6 +52,7 @@ export class BoardComponent {
       projectIssues[projectTaskIndex] = projectTask;
       currentProject.issues = projectIssues;
       this.projectService.project.set({...currentProject});
+      this.projectService.updateProject(currentProject);
     }
   }
 

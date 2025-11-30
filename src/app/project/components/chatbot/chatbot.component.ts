@@ -1,5 +1,5 @@
-import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AiService, ChatMessage } from '../../services/ai.service';
 import { ProjectService } from '../../services/project.service';
@@ -14,16 +14,23 @@ interface UiChatMessage {
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { LayoutService } from '../../../shared/layout/main-layout/layout.service';
 
 @Component({
     selector: 'mom-chatbot',
-    standalone: true,
-    imports: [CommonModule, FormsModule, MatButtonModule, MatIconModule, MatMenuModule],
+    imports: [
+        CommonModule,
+        FormsModule,
+        MatButtonModule,
+        MatIconModule,
+        MatMenuModule
+    ],
     templateUrl: './chatbot.component.html',
     styleUrls: ['./chatbot.component.scss']
 })
 export class ChatbotComponent {
     private aiService = inject(AiService);
+    private layoutService = inject(LayoutService);
     private projectService = inject(ProjectService);
 
     messages = signal<UiChatMessage[]>([
@@ -131,11 +138,6 @@ export class ChatbotComponent {
         }
     }
 
-    clearChat() {
-        this.messages.set([]);
-        this.addMessage('Chat cleared. How can I help you?', 'ai');
-    }
-
     private createIssues(issuesData: any[]) {
         const currentProject = this.projectService.project();
 
@@ -170,5 +172,14 @@ export class ChatbotComponent {
                 timestamp: new Date()
             }
         ]);
+    }
+
+    clearChat() {
+        this.messages.set([]);
+        this.addMessage('Chat cleared. How can I help you?', 'ai');
+    }
+
+    closeChat() {
+        this.layoutService.toggleAssistMode();
     }
 }

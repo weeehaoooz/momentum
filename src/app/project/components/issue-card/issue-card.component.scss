@@ -1,11 +1,11 @@
 @use "colors" as *;
 @use "defaults" as *;
 
-.issue__card { 
+.issue__card {
     display: flex;
     flex-direction: column;
     background-color: $white-color;
-    padding: .8em;
+    padding-top: .8em;
     border: $border;
     gap: .8em;
     border-radius: .2em;
@@ -15,7 +15,7 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        padding: 0;
+        padding: 0 .8em;
         margin: 0;
 
         h3 {
@@ -57,12 +57,12 @@
     .issue__body {
         display: flex;
         flex-direction: column;
-        padding: 0;
+        padding: 0 .8em;
         margin: 0;
         gap: .65em;
 
         p {
-          font-size: .9em;
+            font-size: .9em;
         }
 
         .sub-issues__container {
@@ -91,16 +91,49 @@
     }
 
     .issue__footer {
-      p {
-        font-size: 1em;
-      }
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        color: $grey-color;
+
+        .issue-footer {
+            &__info {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                padding: .8em;
+                gap: .5em;
+                flex: 1;
+                font-size: .9rem;
+                color: $grey-color;
+                background-color: transparent;
+                outline: 0;
+                border: 0;
+            }
+
+
+            &__btn {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                padding: .8em;
+                gap: .5em;
+                flex: 1;
+                font-size: .9rem;
+                color: $grey-color;
+                background-color: transparent;
+                outline: 0;
+                border: 0;
+                cursor: pointer;
+
+                &:hover {
+                    color: $dark-grey-color;
+                }
+            }
+        }
+
+
     }
 }
-
-// :host(.cdk-drag-preview) .issue__card {
-//     border-bottom: $border;
-// }
-
-// :host(.last) .issue__card {
-//   border-bottom: $border !important;
-// }

@@ -6,11 +6,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { IIssue } from '../../project/components/issue-card/issue.interface';
+import { IIssue } from '../issue-card/issue.interface';
 import { ISwimlane } from './swimlane.interface';
-import { IProject } from '../../services/projects.service';
-import { IssueCardComponent } from '../../project/components/issue-card/issue-card.component';
-import { CreateIssueCardComponent } from "../../project/components/issue-list/components/create-issue-card/create-issue-card.component";
+import { IProject } from '../../../services/projects.service';
+import { IssueCardComponent } from '../issue-card/issue-card.component';
+import { CreateIssueCardComponent } from "../issue-list/components/create-issue-card/create-issue-card.component";
 
 @Component({
   selector: 'mom-swimlane',
@@ -57,7 +57,7 @@ export class SwimlaneComponent {
 
       // Update task status based on destination swimlane
       movedIssue.status = newStatus;
-
+      console.log(movedIssue);
       transferArrayItem(
         previousContainer.data,
         currentContainer.data,

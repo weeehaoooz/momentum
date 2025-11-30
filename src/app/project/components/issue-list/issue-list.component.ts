@@ -66,7 +66,7 @@ export class IssueListComponent {
       const issues = this.project()?.issues ?? [];
       moveItemInArray(issues, event.previousIndex, event.currentIndex);
       this.projectService.project.set({ ...this.project(), issues: issues } as IProject);
-      this.projectService.updateProject(this.project()?.code ?? '', this.project() as IProject);
+      this.projectService.updateProject(this.project() as IProject);
     }
   }
 

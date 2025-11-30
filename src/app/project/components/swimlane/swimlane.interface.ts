@@ -1,4 +1,4 @@
-import { IIssue, IIssueStatusEnum } from "../../project/components/issue-card/issue.interface";
+import { IIssue, IIssueStatusEnum } from "../issue-card/issue.interface";
 
 export interface ISwimlane {
     id: string;

@@ -2,5 +2,8 @@
     <mom-navbar></mom-navbar>
     <div class="main__content">
         <ng-content></ng-content>
+        <div class="side__panel" [ngClass]="{'active': assistMode()}">
+            <mom-chatbot></mom-chatbot>
+        </div>
     </div>
 </div>

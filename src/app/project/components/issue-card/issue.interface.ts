@@ -4,9 +4,9 @@ export interface IIssue {
     description: string | null;
     status?: IIssueStatusEnum | null;
     priority?: IIssuePriorityEnum | null;
-    due_date?: Date | null;
-    created_at?: Date ;
-    updated_at?: Date | null;
+    dueDate?: Date | null;
+    createdTs?: Date ;
+    updatedTs?: Date | null;
     subTasks?: IIssue[];
 }
 

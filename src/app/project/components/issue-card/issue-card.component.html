@@ -19,4 +19,22 @@
             </div>
         </div>
     </div>
+    <div class="issue__footer">
+        <div class="issue-footer__info">
+            <span>Due Date:</span>
+            @if (issue()?.dueDate) {
+            <span> {{issue()?.dueDate | date}} </span>
+            } @else {
+            <span>-</span>
+            }
+        </div>
+        <button class="issue-footer__btn">
+            <mat-icon>mode_comment</mat-icon>
+            <span>Comments</span>
+        </button>
+        <button class="issue-footer__btn" (click)="deleteIssue()">
+            <mat-icon>delete</mat-icon>
+            <span>Delete</span>
+        </button>
+    </div>
 </div>

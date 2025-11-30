@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { ISwimlane } from '../components/swimlane/swimlane.interface';
+import { ISwimlane } from '../project/components/swimlane/swimlane.interface';
 import { IIssueStatusEnum } from '../project/components/issue-card/issue.interface';
 
 @Injectable({
