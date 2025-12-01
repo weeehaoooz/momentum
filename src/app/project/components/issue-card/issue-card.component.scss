@@ -1,0 +1,143 @@
+@use "colors" as *;
+@use "defaults" as *;
+
+.issue__card {
+    display: flex;
+    flex-direction: column;
+    background-color: $white-color;
+    padding-top: .8em;
+    border: $border;
+    gap: .8em;
+    border-radius: .2em;
+
+    .issue__header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 .8em;
+        margin: 0;
+
+        .title {
+            font-size: .9rem;
+            color: $grey-color;
+        }
+        h3 {
+            padding: 0;
+            margin: 0;
+        }
+
+        .priority__status {
+            display: block;
+            padding: .15em .65em;
+            border-radius: .8em;
+            font-size: .8em;
+            background-color: $primary-color;
+            color: $white-color;
+            text-transform: uppercase;
+
+            &.critical {
+                background-color: $priority-critical;
+            }
+
+            &.high {
+                background-color: $priority-high;
+            }
+
+            &.medium {
+                background-color: $priority-medium;
+            }
+
+            &.low {
+                background-color: $priority-low;
+            }
+
+            &.minimal {
+                background-color: $priority-minimal;
+            }
+        }
+    }
+
+    .issue__body {
+        display: flex;
+        flex-direction: column;
+        padding: 0 .8em;
+        margin: 0;
+        gap: .65em;
+
+        p {
+            font-size: .9em;
+        }
+
+        .sub-issues__container {
+            display: flex;
+            flex-direction: column;
+            gap: .2em;
+
+            .sub-issues__header {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+
+                h4 {
+                    font-size: .85em;
+                    text-transform: uppercase;
+                }
+            }
+
+            .sub-issues__body {
+                display: flex;
+                flex-direction: column;
+                gap: .2em;
+            }
+        }
+    }
+
+    .issue__footer {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        color: $grey-color;
+
+        .issue-footer {
+            &__info {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                padding: .8em;
+                gap: .5em;
+                flex: 1;
+                font-size: .9rem;
+                color: $grey-color;
+                background-color: transparent;
+                outline: 0;
+                border: 0;
+            }
+
+
+            &__btn {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                padding: .8em;
+                gap: .5em;
+                flex: 1;
+                font-size: .9rem;
+                color: $grey-color;
+                background-color: transparent;
+                outline: 0;
+                border: 0;
+                cursor: pointer;
+
+                &:hover {
+                    color: $dark-grey-color;
+                }
+            }
+        }
+
+
+    }
+}

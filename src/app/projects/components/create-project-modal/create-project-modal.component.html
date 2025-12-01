@@ -1,40 +1,44 @@
 <mom-modal (handleClose)="closeModal()">
-    <div class="modal__container">
-        <div class="create-project__header">
-            <h2>Create Project</h2>
-        </div>
-
-        <form class="create-project__form" [formGroup]="projectForm" (ngSubmit)="createProject()">
-
-            <!-- Project Name -->
-            <mat-form-field>
-                <mat-label>Project Name</mat-label>
-                <input formControlName="name" matInput #name maxlength="256" placeholder="Project name">
-                <mat-hint align="end">{{ name.value.length || 0 }} / 256</mat-hint>
-                <mat-error *ngIf="projectForm.get('name')?.hasError('required')">
-                    Project name is required
-                </mat-error>
-            </mat-form-field>
-
-            <!-- Project Code -->
-            <mat-form-field subscriptSizing="dynamic"> 
-                <mat-label>Project Code</mat-label>
-                <input formControlName="code" matInput #code maxlength="50" placeholder="Unique project code">
-                <mat-error *ngIf="projectForm.get('code')?.hasError('required')">
-                    Project code is required
-                </mat-error>
-            </mat-form-field>
-
-            <!-- Description -->
-            <mat-form-field subscriptSizing="dynamic">
-                <mat-label>Description</mat-label>
-                <textarea formControlName="description" matInput rows="4" placeholder="Describe the project"></textarea>
-            </mat-form-field>
-            <!-- Submit -->
-            <button type="submit" mat-flat-button color="primary" [disabled]="!projectForm.valid">
-                Create Project
-                <mat-icon>add_circle</mat-icon>
-            </button>
-        </form>
+  <div class="modal__container">
+    <div class="create-project__header">
+      <h2>Create Project</h2>
     </div>
+
+    <form class="create-project__form" [formGroup]="projectForm" (ngSubmit)="createProject()">
+
+      <!-- Project Name -->
+      <mat-form-field>
+        <mat-label>Project Name</mat-label>
+        <input formControlName="name" matInput #name maxlength="256" placeholder="Project name">
+        <mat-hint align="end">{{ name.value.length || 0 }} / 256</mat-hint>
+        @if (projectForm.get('name')?.hasError('required')) {
+          <mat-error>
+            Project name is required
+          </mat-error>
+        }
+      </mat-form-field>
+
+      <!-- Project Code -->
+      <mat-form-field subscriptSizing="dynamic">
+        <mat-label>Project Code</mat-label>
+        <input formControlName="code" matInput #code maxlength="50" placeholder="Unique project code">
+        @if (projectForm.get('code')?.hasError('required')) {
+          <mat-error>
+            Project code is required
+          </mat-error>
+        }
+      </mat-form-field>
+
+      <!-- Description -->
+      <mat-form-field subscriptSizing="dynamic">
+        <mat-label>Description</mat-label>
+        <textarea formControlName="description" matInput rows="4" placeholder="Describe the project"></textarea>
+      </mat-form-field>
+      <!-- Submit -->
+      <button type="submit" mat-flat-button color="primary" [disabled]="!projectForm.valid">
+        Create Project
+        <mat-icon>add_circle</mat-icon>
+      </button>
+    </form>
+  </div>
 </mom-modal>

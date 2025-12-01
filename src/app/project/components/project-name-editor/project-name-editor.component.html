@@ -1,13 +1,12 @@
 <div class="project-name-editor">
-  <ng-container *ngIf="!editMode; else editTpl">
+  @if (!editMode) {
     <div class="view-mode">
       <h1 class="project-title">{{ project()?.name }}</h1>
       <button class="mom-icon__btn" (click)="toggleEdit()" aria-label="Edit project name">
         <mat-icon>edit</mat-icon>
       </button>
     </div>
-  </ng-container>
-  <ng-template #editTpl>
+  } @else {
     <div class="edit-mode">
       <input
         #nameInput
@@ -17,9 +16,9 @@
         (keydown.enter)="save()"
         (keydown.escape)="cancel()"
         aria-label="Project name"
-      />
+        />
       <button mat-flat-button color="primary" type="button" (click)="save()">Save</button>
       <button mat-stroked-button color="warn" type="button" (click)="cancel()">Cancel</button>
     </div>
-  </ng-template>
+  }
 </div>

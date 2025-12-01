@@ -1,0 +1,10 @@
+@use "colors" as *;
+
+.issue-id__container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: .35em;
+    font-size: 1em;
+    color: $primary-color;
+}

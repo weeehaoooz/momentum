@@ -13,6 +13,13 @@
         min-height: 48px;
     }
 
+    .project__container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        gap: .5rem;
+    }
+
     .project__content {
         padding: 1rem;
         display: flex;

@@ -1,0 +1,60 @@
+@use "colors" as *;
+@use "defaults" as *;
+@use "form-controls";
+
+.create-issue__card {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    border: $border;
+    padding: 1em;
+    border-radius: .2em;
+    background-color: $white-color;
+
+    .create-issue__header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: .5em;
+
+        .issue-title__container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: .5em;
+            flex: 1;
+        }
+
+    }
+
+    .create-issue__body {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+    }
+
+    .create-issue__footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1em;
+    }
+}
+
+
+::ng-deep {
+    .priority-option {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: .5em;
+
+        .priority-icon {
+            display: grid;
+            place-content: center;
+            font-weight: 700;
+        }
+    }
+}

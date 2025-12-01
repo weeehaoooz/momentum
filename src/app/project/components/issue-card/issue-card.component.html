@@ -1,0 +1,41 @@
+<div class="issue__card">
+    <div class="issue__header">
+        <p class="title">{{issue()?.id}}</p>
+        <div class="priority__status" [ngClass]="issue()?.priority | lowercase">{{issue()?.priority | titlecase}}</div>
+    </div>
+    <div class="issue__body">
+        <div>
+            <h3>{{issue()?.title | titlecase}}</h3>
+            <p>{{issue()?.description}}</p>
+        </div>
+        <div class="sub-issues__container">
+            <div class="sub-issues__header">
+                <h4>Subissues</h4>
+                <button class="mom-icon__btn" (click)="toggleNeIssueCard()">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+            <div class="sub-issues__body">
+
+            </div>
+        </div>
+    </div>
+    <div class="issue__footer">
+        <div class="issue-footer__info">
+            <span>Due Date:</span>
+            @if (issue()?.dueDate) {
+            <span> {{issue()?.dueDate | date}} </span>
+            } @else {
+            <span>-</span>
+            }
+        </div>
+        <button class="issue-footer__btn">
+            <mat-icon>mode_comment</mat-icon>
+            <span>Comments</span>
+        </button>
+        <button class="issue-footer__btn" (click)="deleteIssue()">
+            <mat-icon>delete</mat-icon>
+            <span>Delete</span>
+        </button>
+    </div>
+</div>

@@ -6,6 +6,11 @@
                 <div class="progress-bar" [style.width.%]="completionPercentage()"></div>
             </div>
         </div>
+        @if(!assistMode()) {
+        <button matMiniFab color="primary" (click)="toggleAssistMode()" matTooltip="Assistant Mode">
+            <mat-icon>chat</mat-icon>
+        </button>
+        }
     </div>
     <div class="project__content">
         <router-outlet></router-outlet>

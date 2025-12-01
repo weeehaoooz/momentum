@@ -1,0 +1,24 @@
+.live-caption-container {
+    padding: 1rem;
+    font-family: Roboto, Arial, sans-serif;
+}
+
+.controls button {
+    margin-right: 0.5rem;
+    padding: 0.5rem 1rem;
+}
+
+.caption-box {
+    margin-top: 1rem;
+    background: rgba(0, 0, 0, 0.75);
+    color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    min-height: 6rem;
+}
+
+.caption-box p {
+    margin: 0;
+    font-size: 1.125rem;
+    line-height: 1.5;
+}

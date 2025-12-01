@@ -6,9 +6,9 @@ $secondary-color: #E9E9E9;
 $black-color: #333333;
 $white-color: #FFFFFF;
 $off-white-color: #fdfcfc;
-$grey-color: #777;
+$dark-grey-color: #555;
+$grey-color: #999;
 $light-grey-color: #E0E0E0;
-
 
 $priority-critical: #DE350B;
 $priority-high: #FFAB00;
@@ -17,5 +17,6 @@ $priority-low: #97A0AF;
 $priority-minimal: #E0E0E0;
 
 $border-color: $light-grey-color;
+$border-highlight-color: $grey-color;
 
 $progress-gradient: linear-gradient(90deg, #4caf50, #81c784);

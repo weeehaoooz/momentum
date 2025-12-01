@@ -12,5 +12,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './page-not-found.component.scss'
 })
 export class PageNotFoundComponent {
-
+  goBack() {
+    window.history.back();
+  }
 }

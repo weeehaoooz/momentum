@@ -7,19 +7,18 @@ import { MatIconModule } from '@angular/material/icon';
 import { ModalComponent } from '../../../shared/components/modal/modal.component';
 import { ModalService } from '../../../shared/components/modal/modal.service';
 import { IProject, ProjectsService } from '../../../services/projects.service';
-import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'mom-create-project-modal',
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
     MatIconModule,
     ModalComponent
-  ],
+],
   templateUrl: './create-project-modal.component.html',
   styleUrl: './create-project-modal.component.scss'
 })
@@ -42,7 +41,7 @@ export class CreateProjectModalComponent {
       const project: IProject = {
         ...this.projectForm.value,
         swimlanes: [],
-        tasks: []
+        issues: []
       };
       this.projectService.createProject(project);
       this.modalService.closeModal();

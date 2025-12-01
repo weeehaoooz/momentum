@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, ViewChild, ElementRef, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IProject } from '../../../services/projects.service';
@@ -10,13 +10,12 @@ import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'mom-project-name-editor',
   imports: [
-    CommonModule,
     FormsModule,
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule
-  ],
+],
   templateUrl: './project-name-editor.component.html',
   styleUrls: ['./project-name-editor.component.scss'],
   standalone: true

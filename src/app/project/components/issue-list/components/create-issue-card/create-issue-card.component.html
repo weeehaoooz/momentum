@@ -1,0 +1,34 @@
+<form class="create-issue__card" [formGroup]="issueForm" (ngSubmit)="createIssue()">
+    <div class="create-issue__header">
+        <div class="issue-title__container">
+            <mat-icon>task</mat-icon>
+            <input formControlName="title" class="mom-input issue-title" type="text" placeholder="New issue" />
+        </div>
+        <button tabindex="-1" class="mom-icon__btn" type="button"  (click)="closeEmitter()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <div class="create-issue__body">
+        <div class="mom-input__container">
+            <p class="mom-input__label">Description</p>
+            <textarea formControlName="description" class="mom-input issue-description" placeholder="Describe the issue" rows="5"></textarea>
+            <mom-speech-to-text-button (transcript)="appendTranscript($event)"></mom-speech-to-text-button>
+        </div>
+    </div>
+    <div class="create-issue__footer">
+        <mom-select-input formControlName="priority" label="Priority" placeholder="Issue priority">
+            @for (p of priorities; track $index) {
+            <mom-select-option [value]="p">
+                <span class="priority-option">
+                    <mat-icon class="priority-icon material-symbols-rounded" [ngStyle]="{'color': priorityIconColor(p)}"
+                        [class.empty]="priorityIconColor(p) === ''" aria-hidden="true">
+                        {{ priorityIcon(p) }}
+                    </mat-icon>
+                    <span class="priority-label">{{ p | titlecase }}</span>
+                </span>
+            </mom-select-option>
+            }
+        </mom-select-input>
+        <button matButton="tonal" color="primary" type="submit">Create</button>
+    </div>
+</form>

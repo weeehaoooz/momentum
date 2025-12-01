@@ -4,14 +4,14 @@
     flex: 1;
 }
 
-.not-found-container {
+.not-found__container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
     background-color: $white-color;
 
-    .not-found-content {
+    .not-found__content {
         text-align: center;
 
         h1 {
@@ -32,9 +32,18 @@
             margin-bottom: 2rem;
         }
 
-        button {
-            font-size: 1rem;
-            padding: 0.75rem 2rem;
+        .button__group {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 1rem;
+            
+            button {
+                font-size: 1rem;
+                padding: 0.75rem 2rem;
+            }
         }
+
+
     }
 }

@@ -1,0 +1,33 @@
+<div class="swimlane__container">
+    <div class="swimlane__header">
+        <h3>{{swimlane()?.title | titlecase}}</h3>
+        <div class="button__container">
+            <button class=mom-icon__btn>
+                <mat-icon>sort</mat-icon>
+            </button>
+            @if (!showNewIssueCard()) {
+                <button class=mom-icon__btn (click)="toggleNewIssueCard()">
+                    <mat-icon>add</mat-icon>
+                </button>
+            }
+        </div>
+    </div>
+    <div class="issues__container"
+        [id]="swimlane()?.id ?? 'Swimlane'"
+        cdkDropList
+        [cdkDropListData]="issues()"
+        [cdkDropListConnectedTo]="connectedTo()"
+        (cdkDropListDropped)="drop($event)"
+        >
+        @if (showNewIssueCard()) {
+            <mom-create-issue-card [project]="project()" (status)="swimlane()?.criteria" (close)="toggleNewIssueCard()"></mom-create-issue-card>
+        }
+        @for (issue of issues(); track $index ) {
+            <mom-issue-card 
+                [issue]="issue" 
+                [class.last]="$index == $count - 1"
+                cdkDrag>
+            </mom-issue-card>
+        }
+    </div>
+</div>

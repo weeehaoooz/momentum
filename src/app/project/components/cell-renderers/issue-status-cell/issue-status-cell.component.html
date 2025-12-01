@@ -1,0 +1,6 @@
+<div class="issue-status__container" [ngStyle]="{
+        'background-color': statusBackgroundColor(issue()?.status?.toUpperCase()), 
+        'color': statusColor(issue()?.status?.toUpperCase())
+        }">
+    <p class="issue-status">{{issue()?.status | titlecase}}</p>
+</div>

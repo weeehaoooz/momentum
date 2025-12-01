@@ -1,6 +1,6 @@
 import { Component, inject, input, signal, OnInit } from '@angular/core';
 import { IProject, IProjectData } from '../../../services/projects.service';
-import { ITaskPriorityEnum, ITaskStatusEnum } from '../../../components/task-card/task.interface';
+import { IIssuePriorityEnum, IIssueStatusEnum } from '../../../project/components/issue-card/issue.interface';
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
@@ -31,21 +31,21 @@ export class ProjectCardComponent implements OnInit {
     }
   }
 
-  totalTasks = () => this.project()?.tasks.length ?? 0;
+  totalIssues = () => this.project()?.issues.length ?? 0;
 
-  remainingTasks = () =>
-    this.project()?.tasks.filter(task =>
-      task.status === ITaskStatusEnum.TODO || task.status === ITaskStatusEnum.IN_PROGRESS
+  remainingIssues = () =>
+    this.project()?.issues.filter(issue =>
+      issue.status === IIssueStatusEnum.TODO || issue.status === IIssueStatusEnum.IN_PROGRESS
     ).length ?? 0;
 
-  highPriorityTasks = () =>
-    this.project()?.tasks.filter(task => task.priority === ITaskPriorityEnum.HIGH).length ?? 0;
+  highPriorityIssues = () =>
+    this.project()?.issues.filter(issue => issue.priority === IIssuePriorityEnum.HIGH).length ?? 0;
 
   completionPercentage = () => {
-    const tasks = this.project()?.tasks ?? [];
-    if (tasks.length === 0) return 0;
-    const done = tasks.filter(t => t.status === ITaskStatusEnum.DONE).length;
-    return Math.round((done / tasks.length) * 100);
+    const issues = this.project()?.issues ?? [];
+    if (issues.length === 0) return 0;
+    const done = issues.filter(t => t.status === IIssueStatusEnum.DONE).length;
+    return Math.round((done / issues.length) * 100);
   };
 
   redirectProject() {

@@ -1,0 +1,39 @@
+<div class="chatbot">
+    <div class="chatbot__header">
+        <h3>AI Assistant</h3>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="clearChat()">
+                <mat-icon>delete_outline</mat-icon>
+                <span>Clear Chat</span>
+            </button>
+            <button mat-menu-item (click)="closeChat()">
+                <mat-icon>close</mat-icon>
+                <span>Close Chat</span>
+            </button>
+        </mat-menu>
+    </div>
+
+    <div class="chatbot__messages">
+        @for (msg of messages(); track msg.id) {
+        <div class="message" [class.message--user]="msg.sender === 'user'" [class.message--ai]="msg.sender === 'ai'">
+            <div class="message__content">
+                {{ msg.text }}
+            </div>
+            <div class="message__time">
+                {{ msg.timestamp | date:'shortTime' }}
+            </div>
+        </div>
+        }
+    </div>
+
+    <div class="chatbot__input">
+        <input type="text" [ngModel]="newMessage()" (ngModelChange)="newMessage.set($event)"
+            (keyup.enter)="sendMessage()" placeholder="Type a message...">
+        <button (click)="sendMessage()" [disabled]="!newMessage().trim()">
+            Send
+        </button>
+    </div>
+</div>

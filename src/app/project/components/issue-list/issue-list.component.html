@@ -1,0 +1,24 @@
+<div class="issue-list__container">
+    <div class="issue-list__header">
+        <h3>Issues</h3>
+    </div>
+    <div class="issues__data">
+        <ag-grid-angular 
+            class="ag-theme-alpine" 
+            [rowData]="issues()" 
+            [columnDefs]="columnDefs"
+            [gridOptions]="gridOptions">
+        </ag-grid-angular>
+    </div>
+    <!-- <div class="issue-list__body">
+        <div class="issues__container" cdkDropList cdkDropListOrientation="vertical" [cdkDropListData]="issues()"
+            (cdkDropListDropped)="drop($event)">
+            @for( issue of issues(); track $index) {
+            <mom-issue-line [issue]="issue" [class.last]="$index == $count - 1" cdkDrag
+                cdkDragLockAxis="y"></mom-issue-line>
+            }
+        </div>
+        <mom-create-issue-card [project]="project()"></mom-create-issue-card>
+    </div> -->
+
+</div>

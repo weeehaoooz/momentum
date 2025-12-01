@@ -1,0 +1,10 @@
+<div class="live-caption-container">
+  <div class="controls">
+    <button (click)="startRecording()" [disabled]="isRecording">Start</button>
+    <button (click)="stopRecording()" [disabled]="!isRecording">Stop</button>
+  </div>
+
+  <div class="caption-box">
+    <p>{{ captions() }}</p>
+  </div>
+</div>
