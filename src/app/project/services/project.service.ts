@@ -31,8 +31,8 @@ export class ProjectService {
     const projectStorageKey = 'STORAGE_' + projectCode;
     this.storagMap.set(projectStorageKey, project).subscribe({
       next: () => {
-        this.refreshProject(projectCode);
-        console.log("Updated Project");
+        this.project.set({...project});
+        console.log("Project Updated in service");
       },
       error: error => {
         console.error(error);
@@ -43,7 +43,6 @@ export class ProjectService {
   createIssue(payload: any) {
     const projectCode = payload.projectCode;
     const issuePayload = payload.issue;
-
     this.getProject(projectCode).subscribe({
       next: (project: any) => {
         const issues = project.issues;
@@ -83,9 +82,9 @@ export class ProjectService {
 
   deleteIssue(issueId: string | undefined) {
     // Find the project that contains this issue and remove it
+    console.log(issueId);
     if (issueId) {
       const projectCode = issueId.split('-')[0]; // Assuming the format is PROJECT-COUNT
-
       this.getProject(projectCode).subscribe({
         next: (project: any) => {
           if (project && project.issues) {

@@ -51,12 +51,10 @@ export class BoardComponent {
       const projectTask = projectIssues[projectTaskIndex];
       projectIssues[projectTaskIndex] = projectTask;
       currentProject.issues = projectIssues;
-      this.projectService.project.set({...currentProject});
       this.projectService.updateProject(currentProject);
     }
   }
 
   createSwimlane() {
-
   }
 }

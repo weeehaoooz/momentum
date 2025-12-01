@@ -24,7 +24,6 @@ export class IssueCardComponent {
 
   deleteIssue() {
     if (this.issue() && this.issue()?.id) {
-      console.log(this.issue()?.id);
       this.projectService.deleteIssue(this.issue()?.id);
     }
   }
