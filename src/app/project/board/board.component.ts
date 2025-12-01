@@ -32,10 +32,10 @@ export class BoardComponent {
     const swimlanes = this.swimlaneService.swimlanes();
     // Map issues to swimlanes
     const issues = this.project()?.issues ?? [];
-    swimlanes.forEach(swimlane => {
-      swimlane.issues = issues.filter(issue => issue.status === swimlane.criteria);
-    });
-    return swimlanes;
+    return swimlanes.map(swimlane => ({
+      ...swimlane,
+      issues: issues.filter(issue => issue.status === swimlane.criteria)
+    }));
   });
 
   connectedIds(swimlaneId: string) {
@@ -45,7 +45,7 @@ export class BoardComponent {
   onIssueMoved(task: IIssue) {
     const currentProject = this.project();
     const projectIssues = currentProject?.issues ?? [];
-    const projectTaskIndex = projectIssues.findIndex(t => t.id === task.id);    
+    const projectTaskIndex = projectIssues.findIndex(t => t.id === task.id);
 
     if (currentProject) {
       const projectTask = projectIssues[projectTaskIndex];

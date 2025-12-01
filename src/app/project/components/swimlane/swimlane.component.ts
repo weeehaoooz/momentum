@@ -38,6 +38,7 @@ export class SwimlaneComponent {
 
   critera = computed(() => this.swimlane()?.criteria);
   issues = computed(() => {
+    console.log("issues updated");
     const issues = this.swimlane()?.issues ?? [];
     const criteria = this.swimlane()?.criteria;
     return issues.filter(issue => issue?.status === criteria);

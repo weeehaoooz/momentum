@@ -12,7 +12,7 @@
     </div>
     @if (project()) {
     <div class="swimlanes__container">
-        @for (swimlane of swimlanes(); track $index) {
+        @for (swimlane of swimlanes(); track swimlane.id) {
         <mom-swimlane [project]="project()"
           [swimlane]="swimlane" [connectedTo]="connectedIds(swimlane.id)" (issueMoved)="onIssueMoved($event)">
         </mom-swimlane>
