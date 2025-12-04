@@ -4,27 +4,11 @@
 
 .project__wrapper.overview__wrapper {
     display: flex;
-    flex-direction: row;
-    gap: 0;
-    flex: 1;
+    flex-direction: column;
+    padding: 0 1rem;
+    height: 100%;
 
-    .overview__container {
-        display: flex;
-        flex-direction: column;
-        flex: 2;
-        padding: 0 1rem;
-        height: 100%;
-
-        .issues__container {
-            flex: 1;
-        }
-    }
-
-    .chatbot__container {
-        display: flex;
-        flex-direction: column;
+    .issues__container {
         flex: 1;
-        height: 100%;
-        padding: 0 1rem;
     }
 }

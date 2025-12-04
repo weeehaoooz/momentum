@@ -1,0 +1,62 @@
+@use "colors" as *;
+@use "defaults" as *;
+
+:host {
+    flex: 1;
+}
+
+.project__wrapper.settings__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rem;
+    height: 100%;
+
+    .project__toolbar {
+        width: 100%;
+    }
+
+    .settings__container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        padding: 0 1rem;
+        gap: 1rem;
+        height: 100%;
+        width: 100%;
+
+
+        .settings-control__container {
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+
+            .settings__control {
+                display: block;
+                padding: .5em .8em;
+                font-weight: bold;
+                color: $primary-color;
+                min-width: 180px;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.2s ease, color 0.2s ease;
+
+                &:hover {
+                    background-color: rgba(42, 153, 244, 0.1);
+                }
+                &.active {
+                    background-color: $primary-color;
+                    color: $white-color;
+                }
+            }
+        }
+
+        .settings__content {
+            border: $border;
+            border-radius: 10px;
+            flex: 1;
+            max-width: 1024px;
+        }
+    }
+}

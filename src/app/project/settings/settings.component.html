@@ -1,0 +1,21 @@
+<div class="project__wrapper settings__wrapper">
+  <div class="project__toolbar">
+    <mom-project-view-nav [projectId]="projectId()"></mom-project-view-nav>
+  </div>
+  <div class="settings__container">
+    <div class="settings-control__container">
+      <div class="settings__control" [routerLink]="['general']" routerLinkActive="active">
+        General
+      </div>
+      <div class="settings__control" [routerLink]="['issues']" routerLinkActive="active">
+        Issues
+      </div>
+      <div class="settings__control" [routerLink]="['members']" routerLinkActive="active">
+        Members
+      </div>
+    </div>
+    <div class="settings__content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

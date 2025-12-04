@@ -36,7 +36,6 @@ export class ProjectComponent {
     const issues = this.project()?.issues ?? [];
     if (issues.length === 0) return 0;
     const done = issues.filter(t => t.status === IIssueStatusEnum.DONE).length;
-    console.log("Done Issues", done);
     return Math.round((done / issues.length) * 100);
   });
 

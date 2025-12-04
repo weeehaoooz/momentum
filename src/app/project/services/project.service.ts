@@ -1,13 +1,11 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { StorageMap } from '@ngx-pwa/local-storage';
-import { IProject, ProjectsService } from '../../services/projects.service';
-import { IIssue } from '../components/issue-card/issue.interface';
+import { IProject } from '../../services/projects.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectService {
-  private projectsService = inject(ProjectsService);
   private storagMap = inject(StorageMap);
 
   project = signal<IProject | undefined>(undefined);

@@ -3,6 +3,8 @@ import { ProjectComponent } from './project/project.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { BoardComponent } from './project/board/board.component';
 import { OverviewComponent } from './project/overview/overview.component';
+import { SettingsComponent } from './project/settings/settings.component';
+import { IssuesComponent } from './project/settings/issues/issues.component';
 
 export const routes: Routes = [
     {
@@ -20,6 +22,21 @@ export const routes: Routes = [
             {
                 path: 'board',
                 component: BoardComponent
+            },
+            {
+                path: 'settings',
+                component: SettingsComponent,
+                children: [
+                    {
+                        path: '',
+                        redirectTo: 'issues',
+                        pathMatch: 'full'
+                    },
+                    {
+                        path: 'issues',
+                        component: IssuesComponent
+                    }
+                ]
             }
         ]
     },
